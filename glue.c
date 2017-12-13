@@ -8,6 +8,8 @@
 #include "controller.h"
 
 // Calibration parameters
+#define MIN_LIGHT_SENSOR 0
+#define MAX_LIGHT_SENSOR 1023
 #define MIN 490
 #define MAX 650
 #define V_MAX 1
@@ -57,6 +59,19 @@ void ecrobot_device_terminate() {
 		- all the "methods" (init, step input, output) have NO parameters
 */
 
+/**
+ * Fonction de calibrage automatique
+ * Appuyer sur le bouton orange pour finaliser la calibration
+ */
+// void calibration_auto(void) {
+// 	int right_min = MAX_LIGHT_SENSOR,
+// 		right_max = MIN_LIGHT_SENSOR,
+// 		left_min = MAX_LIGHT_SENSOR,
+// 		left_max = MIN_LIGHT_SENSOR;
+// 	while (ecrobot_is_ENTER_button_pressed() != 1) {
+//
+// 	}
+// }
 
 /* GLUE CODE
 	IMPORTANT !!!
@@ -64,7 +79,9 @@ void ecrobot_device_terminate() {
 	using the procedure provided in the generated code
 */
 void usr_init(void) {
-	// Calibration à faire (mutex en multi taches)
+	// Calibration
+
+
 	controller_init();
 }
 
@@ -100,7 +117,7 @@ void controller_O_v_d(_real V) {
 	display_int(v_power, 4);
 	display_string(" Sp R ");
 #endif
-	nxt_motor_set_speed(NXT_PORT_A, v_power, 0);
+	nxt_motor_set_speed(NXT_PORT_A, v_power, 1);
 }
 
 void controller_O_v_g(_real V) {
@@ -110,7 +127,7 @@ void controller_O_v_g(_real V) {
 	display_int(v_power, 4);
 	display_string(" Sp L ");
 #endif
-	nxt_motor_set_speed(NXT_PORT_B, v_power, 0);
+	nxt_motor_set_speed(NXT_PORT_B, v_power, 1);
 }
 
 /*
