@@ -10,8 +10,7 @@
 // Calibration parameters
 #define MIN_LIGHT_SENSOR 0
 #define MAX_LIGHT_SENSOR 1023
-#define MIN 490
-#define MAX 650
+
 #define V_MAX 1
 
 // #define DEBUG
@@ -59,19 +58,47 @@ void ecrobot_device_terminate() {
 		- all the "methods" (init, step input, output) have NO parameters
 */
 
+_boolean calibration_init = _true;
+int right_min = MAX_LIGHT_SENSOR,
+ 	right_max = MIN_LIGHT_SENSOR,
+	left_min = MAX_LIGHT_SENSOR,
+	left_max = MIN_LIGHT_SENSOR;
 /**
  * Fonction de calibrage automatique
  * Appuyer sur le bouton orange pour finaliser la calibration
  */
-// void calibration_auto(void) {
-// 	int right_min = MAX_LIGHT_SENSOR,
-// 		right_max = MIN_LIGHT_SENSOR,
-// 		left_min = MAX_LIGHT_SENSOR,
-// 		left_max = MIN_LIGHT_SENSOR;
-// 	while (ecrobot_is_ENTER_button_pressed() != 1) {
-//
-// 	}
-// }
+void calibration_auto_step(void) {
+	int right, left;
+
+	left = ecrobot_get_light_sensor(NXT_PORT_S1);
+	right = ecrobot_get_light_sensor(NXT_PORT_S2);
+	if (left > left_max)
+		left_max = left;
+	if (left < left_min)
+		left_min = left;
+	if (right > right_max)
+		right_max = right;
+	if (right < right_min)
+		right_min = right;
+
+	display_goto_xy(0,0);
+	display_int(left_min, 4);
+	display_string(" left min");
+
+	display_goto_xy(0,1);
+	display_int(left_max, 4);
+	display_string(" left max");
+
+	display_goto_xy(0,2);
+	display_int(right_min, 4);
+	display_string(" right min");
+
+	display_goto_xy(0,3);
+	display_int(right_max, 4);
+	display_string(" right max");
+
+	display_update();
+}
 
 /* GLUE CODE
 	IMPORTANT !!!
@@ -79,9 +106,6 @@ void ecrobot_device_terminate() {
 	using the procedure provided in the generated code
 */
 void usr_init(void) {
-	// Calibration
-
-
 	controller_init();
 }
 
@@ -139,32 +163,40 @@ void controller_O_v_g(_real V) {
 */
 TASK(UsrTask)
 {
+	if (calibration_init) {
+		calibration_auto_step();
+		if (ecrobot_is_ENTER_button_pressed()) {
+			calibration_init = _false;
+		}
+	} else {
 
-	/* read and set inputs */
-	controller_I_Cg(raw_to_model(MIN, MAX, ecrobot_get_light_sensor(NXT_PORT_S1)));
-	controller_I_Cd(raw_to_model(MIN, MAX, ecrobot_get_light_sensor(NXT_PORT_S2)));
-	controller_I_Jean_Michel(ecrobot_get_sonar_sensor(NXT_PORT_S3));
+		/* read and set inputs */
+		controller_I_Cg(raw_to_model(left_min, left_max, ecrobot_get_light_sensor(NXT_PORT_S1)));
+		controller_I_Cd(raw_to_model(right_min, right_max, ecrobot_get_light_sensor(NXT_PORT_S2)));
+		controller_I_Jean_Michel(ecrobot_get_sonar_sensor(NXT_PORT_S3));
 
-	/* performs a Lustre step
-		output procs are called within the step
-	*/
-	controller_step();
+		/* performs a Lustre step
+			output procs are called within the step
+		*/
+		controller_step();
 #ifdef DEBUG
-	display_goto_xy(0,0);
-	display_int(raw_to_model(MIN, MAX, ecrobot_get_light_sensor(NXT_PORT_S1)), 4);
-	// display_int(ecrobot_get_light_sensor(NXT_PORT_S1), 4);	// Pour Calibration
-	display_string(" left ");
-	display_goto_xy(0,1);
-	display_int(raw_to_model(MIN, MAX, ecrobot_get_light_sensor(NXT_PORT_S2)), 4);
-	// display_int(ecrobot_get_light_sensor(NXT_PORT_S2), 4);	// Pour Calibration
-	display_string(" right");
-	display_goto_xy(0,2);
-	display_int(ecrobot_get_sonar_sensor(NXT_PORT_S3), 4);
-	display_string(" dist ");
-	/* refresh screen (ecrobot library)
-	 */
-	display_update();
+		display_goto_xy(0,0);
+		display_int(raw_to_model(MIN, MAX, ecrobot_get_light_sensor(NXT_PORT_S1)), 4);
+		// display_int(ecrobot_get_light_sensor(NXT_PORT_S1), 4);	// Pour Calibration
+		display_string(" left ");
+		display_goto_xy(0,1);
+		display_int(raw_to_model(MIN, MAX, ecrobot_get_light_sensor(NXT_PORT_S2)), 4);
+		// display_int(ecrobot_get_light_sensor(NXT_PORT_S2), 4);	// Pour Calibration
+		display_string(" right");
+		display_goto_xy(0,2);
+		display_int(ecrobot_get_sonar_sensor(NXT_PORT_S3), 4);
+		display_string(" dist ");
+		/* refresh screen (ecrobot library)
+		 */
+		display_update();
 #endif
+
+	}
 
 	TerminateTask();
 }
