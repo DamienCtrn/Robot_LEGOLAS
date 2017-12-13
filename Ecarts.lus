@@ -1,0 +1,19 @@
+-- mdl2lus - 2014 ver. 0.41 (SHA 79444ea)
+-- Tue Nov 28 14:13:48 2017
+const pi : real;
+node Ecarts(Cg: real; Cd: real) returns (eps_teta: real; eps_delta: real);
+var
+   w_000: real;
+   w_001: real;
+   w_002: real;
+   w_003: real;
+   w_004: real;
+let
+   w_004 = (w_003 - w_002);
+   w_002 = Cg;
+   w_000 = (w_003 + w_002);
+   eps_teta = w_001;
+   w_003 = Cd;
+   eps_delta = w_000;
+   w_001 = ((pi / 200.0) * w_004);
+tel

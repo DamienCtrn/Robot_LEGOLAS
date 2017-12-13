@@ -1,0 +1,45 @@
+-- mdl2lus - 2014 ver. 0.41 (SHA 79444ea)
+-- Tue Nov 28 16:34:23 2017
+const kp_teta : real;
+const Te : real;
+const ki_teta : real;
+node Correcteurs(eps_teta: real; eps_delta: real) returns (v_d: real; v_g: real);
+var
+   w_000: real;
+   w_001: real;
+   w_002: real;
+   w_003: real;
+   w_004: real;
+   w_005: real;
+   w_006: real;
+   w_007: real;
+   w_008: real;
+   w_009: real;
+   w_010: real;
+   w_011: real;
+   w_012: real;
+   w_013: real;
+   w_014: real;
+   w_015: real;
+   w_016: real;
+let
+   w_006 = (0.5 * w_014);
+   w_005 = (0.5 * w_013);
+   w_008 = ((- w_010) + w_011);
+   w_014 = (w_007 + w_009);
+   w_007 = (w_016 + w_015);
+   w_003 = eps_teta;
+   w_015 = (kp_teta * w_003);
+   w_012 = (2.0 * w_007);
+   w_011 = (0.005 * w_004);
+   w_016 = (ki_teta * w_000);
+   v_d = w_006;
+   w_004 = eps_delta;
+   w_000 = (0.0 -> (pre w_002));
+   v_g = w_005;
+   w_010 = (if w_012<0.0 then -w_012 else w_012);
+   w_009 = (2.0 * w_008);
+   w_001 = (Te * w_003);
+   w_002 = (w_001 + w_000);
+   w_013 = ((- w_007) + w_009);
+tel

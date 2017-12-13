@@ -1,0 +1,121 @@
+-- mdl2lus - 2014 ver. 0.41 (SHA 79444ea)
+-- Wed Dec 13 10:02:56 2017
+const kp_teta : real;
+const Te : real;
+const pi : real;
+const ki_teta : real;
+node controller(Cg: real; Cd: real; Jean_Michel: int) returns (v_d: real; v_g: real);
+var
+   w_000: bool;
+   w_001: bool;
+   w_002: bool;
+   w_003: bool;
+   w_004: real;
+   w_005: real;
+   w_006: real;
+   w_007: bool;
+   w_008: bool;
+   w_009: real;
+   w_010: int;
+   w_011: int;
+   w_012: real;
+   w_013: real;
+   w_014: real;
+   w_015: real;
+   w_016: real;
+   w_017: real;
+   w_018: real;
+let
+   w_017 = Cg;
+   w_007 = (w_017 <= w_009);
+   w_011 = Jean_Michel;
+   w_002 = (w_001 and w_008);
+   w_008 = (not (w_001 and w_007));
+   w_009 = 50.0;
+   w_016 = Cd;
+   w_010 = 10;
+   v_d = w_014;
+   w_005 = ((- 1.0) * w_012);
+   w_001 = Le_Point_de_la_Memoire(w_003, w_000);
+   w_013 = (if w_002 then w_005 else w_004);
+   w_000 = (false -> (pre w_002));
+   v_g = w_013;
+   (w_006, w_004) = Correcteurs(w_015, w_018);
+   w_003 = (w_011 <= w_010);
+   w_014 = (if w_002 then w_012 else w_006);
+   w_012 = 100.0;
+   (w_015, w_018) = Ecarts(w_017, w_016);
+tel
+node Ecarts(Cg: real; Cd: real) returns (eps_teta: real; eps_delta: real);
+var
+   w_000: real;
+   w_001: real;
+   w_002: real;
+   w_003: real;
+   w_004: real;
+let
+   w_004 = (w_003 - w_002);
+   w_002 = Cg;
+   w_000 = (w_003 + w_002);
+   eps_teta = w_001;
+   w_003 = Cd;
+   eps_delta = w_000;
+   w_001 = ((pi / 200.0) * w_004);
+tel
+node Correcteurs(eps_teta: real; eps_delta: real) returns (v_d: real; v_g: real);
+var
+   w_000: real;
+   w_001: real;
+   w_002: real;
+   w_003: real;
+   w_004: real;
+   w_005: real;
+   w_006: real;
+   w_007: real;
+   w_008: real;
+   w_009: real;
+   w_010: real;
+   w_011: real;
+   w_012: real;
+   w_013: real;
+   w_014: real;
+   w_015: real;
+   w_016: real;
+let
+   w_006 = (0.5 * w_014);
+   w_005 = (0.5 * w_013);
+   w_008 = ((- w_010) + w_011);
+   w_014 = (w_007 + w_009);
+   w_007 = (w_016 + w_015);
+   w_003 = eps_teta;
+   w_015 = (kp_teta * w_003);
+   w_012 = (2.0 * w_007);
+   w_011 = (0.005 * w_004);
+   w_016 = (ki_teta * w_000);
+   v_d = w_006;
+   w_004 = eps_delta;
+   w_000 = (0.0 -> (pre w_002));
+   v_g = w_005;
+   w_010 = (if w_012<0.0 then -w_012 else w_012);
+   w_009 = (2.0 * w_008);
+   w_001 = (Te * w_003);
+   w_002 = (w_001 + w_000);
+   w_013 = ((- w_007) + w_009);
+tel
+node Le_Point_de_la_Memoire(Set: bool; Reset: bool) returns (Out: bool);
+var
+   w_000: bool;
+   w_001: bool;
+   w_002: bool;
+   w_003: bool;
+   w_004: bool;
+   w_005: bool;
+let
+   w_002 = Set;
+   w_000 = (w_001 and w_004);
+   Out = w_000;
+   w_005 = (false -> (pre w_000));
+   w_004 = (not w_003);
+   w_001 = (w_005 or w_002);
+   w_003 = Reset;
+tel
