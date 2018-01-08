@@ -1,6 +1,6 @@
 
 # Application name
-TARGET=controller
+TARGET=multifruiti
 
 # Where to find user C code
 USR_PATH=.
@@ -9,8 +9,9 @@ USR_PATH=.
 # user C code
 # -----------
 USR_CFILES=\
-	controller.c \
 	glue.c \
+	line_ctrl.c \
+	obst_ctrl.c \
 
 # generic makefile ...
 include $(MDL2LUS2OSEK)/generic.mak
@@ -22,15 +23,36 @@ include $(MDL2LUS2OSEK)/generic.mak
 
 # c code is obtained by compiling Lustre code ...
 # (note the "-ctx-static": it influences the way GLUE must be written)
-controller.c: controller.lus
-	lus2c controller.lus controller -ctx-static
+# controller.c: controller.lus
+# 	lus2c controller.lus controller -ctx-static
+
+# # Lustre code is obtained from mdl
+# controller.lus: ExRobotAndEnvironmentControllerContPI.mdl
+# 	mdl2lus ExRobotAndEnvironmentControllerContPI.mdl -system controller
+
+# clear: clean
+# 	rm -f controller.xml controller.c controller.h controller.lus controller.ec controller.mws
+
+# run:
+# 	t2n -put controller.rxe
+
+## A partir DC (commics) commence le Makefile multitâche ##
+
+line_ctrl.c: line_ctrl.lus ExRobotAndEnvironmentControllerContPI.mdl
+	lus2c line_ctrl.lus line_ctrl -ctx-static -o line_ctrl.c
+
+obst_ctrl.c: obst_ctrl.lus ExRobotAndEnvironmentControllerContPI.mdl
+	lus2c obst_ctrl.lus obst_ctrl -ctx-static -o obst_ctrl.c
 
 # Lustre code is obtained from mdl
-controller.lus: ExRobotAndEnvironmentControllerContPI.mdl
-	mdl2lus ExRobotAndEnvironmentControllerContPI.mdl -system controller
+line_ctrl.lus: ExRobotAndEnvironmentControllerContPI.mdl
+	mdl2lus ExRobotAndEnvironmentControllerContPI.mdl -system line_ctrl
+
+obst_ctrl.lus: ExRobotAndEnvironmentControllerContPI.mdl
+	mdl2lus ExRobotAndEnvironmentControllerContPI.mdl -system obst_ctrl
 
 clear: clean
-	rm -f controller.xml controller.c controller.h controller.lus controller.ec controller.mws
+	rm -f *.lus *.ec *.mws
 
 run:
-	t2n -put controller.rxe
+	t2n -put $(TARGET).rxe
