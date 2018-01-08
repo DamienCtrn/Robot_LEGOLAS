@@ -1,64 +1,92 @@
 -- mdl2lus - 2014 ver. 0.41 (SHA 79444ea)
--- Mon Jan  8 14:59:19 2018
+-- Mon Jan  8 16:36:05 2018
 const kp_teta : real;
 const Te : real;
 const pi : real;
 const ki_teta : real;
-node controller(Cg: real; Cd: real; Jean_Michel: int; Jean_Reset: bool) returns (v_d: real; v_g: real);
+node controller(Cg: real; Cd: real; Jean_Michel: int; Jean_Ren__: bool) returns (v_d: real; v_g: real);
 var
-   w_000: bool;
+   w_000: real;
    w_001: bool;
    w_002: bool;
-   w_003: bool;
+   w_003: int;
    w_004: real;
+   w_005: real;
+   w_006: real;
+let
+   w_000 = Cg;
+   w_003 = Jean_Michel;
+   w_001 = obst_ctrl(w_006, w_003, w_002);
+   w_006 = Cd;
+   v_d = w_005;
+   (w_005, w_004) = line_ctrl(w_000, w_006, w_001);
+   v_g = w_004;
+   w_002 = Jean_Ren__;
+tel
+node line_ctrl(Cg: real; Cd: real; Obst: bool) returns (Vd: real; Vg: real);
+var
+   w_000: real;
+   w_001: real;
+   w_002: real;
+   w_003: real;
+   w_004: real;
+   w_005: real;
+   w_006: real;
+   w_007: real;
+   w_008: real;
+   w_009: real;
+   w_010: bool;
+let
+   w_001 = Cg;
+   w_007 = 0.2;
+   w_010 = Obst;
+   Vg = w_009;
+   w_000 = Cd;
+   w_004 = ((- 1.0) * w_007);
+   w_009 = (if w_010 then w_004 else w_002);
+   (w_008, w_002) = Correcteurs(w_003, w_005);
+   Vd = w_006;
+   w_006 = (if w_010 then w_007 else w_008);
+   (w_003, w_005) = Ecarts(w_001, w_000);
+tel
+node obst_ctrl(Cd: real; Jean_Michel: int; Jean_Ren__: bool) returns (Obst: bool);
+var
+   w_000: real;
+   w_001: bool;
+   w_002: int;
+   w_003: bool;
+   w_004: bool;
    w_005: bool;
-   w_006: bool;
-   w_007: bool;
+   w_006: int;
+   w_007: real;
    w_008: bool;
    w_009: bool;
    w_010: bool;
    w_011: bool;
    w_012: real;
-   w_013: real;
-   w_014: real;
+   w_013: bool;
+   w_014: bool;
    w_015: bool;
-   w_016: real;
-   w_017: int;
-   w_018: int;
-   w_019: real;
-   w_020: real;
-   w_021: real;
-   w_022: real;
-   w_023: real;
-   w_024: real;
-   w_025: real;
+   w_016: bool;
 let
-   w_024 = Cg;
-   w_000 = Jean_Reset;
-   w_008 = (w_023 >= w_004);
-   w_015 = (w_023 <= w_016);
-   w_004 = 70.0;
-   w_019 = 0.2;
-   w_018 = Jean_Michel;
-   w_009 = (w_010 and w_015);
-   w_001 = (w_002 or w_000);
-   w_006 = (w_007 and w_008);
-   w_010 = Obstacle(w_011, w_001);
-   w_016 = 30.0;
-   w_023 = Cd;
-   w_017 = 10;
-   v_d = w_021;
-   w_013 = ((- 1.0) * w_019);
-   w_003 = (w_005 and w_015);
-   w_020 = (if w_010 then w_013 else w_012);
-   w_002 = (false -> (pre w_003));
-   v_g = w_020;
-   (w_014, w_012) = Correcteurs(w_022, w_025);
-   w_011 = (w_018 <= w_017);
-   w_007 = Ligne_Noire(w_009, w_001);
-   w_021 = (if w_010 then w_019 else w_014);
-   w_005 = Ligne_Blanche(w_006, w_001);
-   (w_022, w_025) = Ecarts(w_024, w_023);
+   w_008 = (w_007 >= w_012);
+   w_005 = (w_007 <= w_000);
+   w_012 = 70.0;
+   w_002 = Jean_Michel;
+   w_010 = (w_009 and w_005);
+   Obst = w_009;
+   w_016 = (w_013 or w_015);
+   w_003 = (w_001 and w_008);
+   w_009 = Obstacle(w_004, w_016);
+   w_000 = 30.0;
+   w_007 = Cd;
+   w_006 = 10;
+   w_014 = (w_011 and w_005);
+   w_013 = (false -> (pre w_014));
+   w_015 = Jean_Ren__;
+   w_004 = (w_002 <= w_006);
+   w_001 = Ligne_Noire(w_010, w_016);
+   w_011 = Ligne_Blanche(w_003, w_016);
 tel
 node Ecarts(Cg: real; Cd: real) returns (eps_teta: real; eps_delta: real);
 var
@@ -75,40 +103,6 @@ let
    w_003 = Cd;
    eps_delta = w_000;
    w_001 = ((pi / 200.0) * w_004);
-tel
-node Ligne_Blanche(Set: bool; Reset: bool) returns (Out: bool);
-var
-   w_000: bool;
-   w_001: bool;
-   w_002: bool;
-   w_003: bool;
-   w_004: bool;
-   w_005: bool;
-let
-   w_002 = Set;
-   w_000 = (w_001 and w_004);
-   Out = w_000;
-   w_005 = (false -> (pre w_000));
-   w_004 = (not w_003);
-   w_001 = (w_005 or w_002);
-   w_003 = Reset;
-tel
-node Ligne_Noire(Set: bool; Reset: bool) returns (Out: bool);
-var
-   w_000: bool;
-   w_001: bool;
-   w_002: bool;
-   w_003: bool;
-   w_004: bool;
-   w_005: bool;
-let
-   w_002 = Set;
-   w_000 = (w_001 and w_004);
-   Out = w_000;
-   w_005 = (false -> (pre w_000));
-   w_004 = (not w_003);
-   w_001 = (w_005 or w_002);
-   w_003 = Reset;
 tel
 node Correcteurs(eps_teta: real; eps_delta: real) returns (v_d: real; v_g: real);
 var
@@ -149,6 +143,40 @@ let
    w_001 = (Te * w_003);
    w_002 = (w_001 + w_000);
    w_013 = ((- w_007) + w_009);
+tel
+node Ligne_Blanche(Set: bool; Reset: bool) returns (Out: bool);
+var
+   w_000: bool;
+   w_001: bool;
+   w_002: bool;
+   w_003: bool;
+   w_004: bool;
+   w_005: bool;
+let
+   w_002 = Set;
+   w_000 = (w_001 and w_004);
+   Out = w_000;
+   w_005 = (false -> (pre w_000));
+   w_004 = (not w_003);
+   w_001 = (w_005 or w_002);
+   w_003 = Reset;
+tel
+node Ligne_Noire(Set: bool; Reset: bool) returns (Out: bool);
+var
+   w_000: bool;
+   w_001: bool;
+   w_002: bool;
+   w_003: bool;
+   w_004: bool;
+   w_005: bool;
+let
+   w_002 = Set;
+   w_000 = (w_001 and w_004);
+   Out = w_000;
+   w_005 = (false -> (pre w_000));
+   w_004 = (not w_003);
+   w_001 = (w_005 or w_002);
+   w_003 = Reset;
 tel
 node Obstacle(Set: bool; Reset: bool) returns (Out: bool);
 var

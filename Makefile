@@ -54,5 +54,5 @@ obst_ctrl.lus: ExRobotAndEnvironmentControllerContPI.mdl
 clear: clean
 	rm -f *.lus *.ec *.mws
 
-run:
+flash:
 	t2n -put $(TARGET).rxe
