@@ -106,9 +106,10 @@ ki_teta=omega*omega/alpha
 kp_teta=3*ksi*omega/alpha
 kd_teta=100/(alpha*4*omega*omega)
 
-sysbo = tf([0 kp_teta ki_teta],[1 1 0]);
-[g p f w]=margin(sysbo);
-Te = 0.05/w
+%sysbo = tf([0 kp_teta ki_teta],[1 1 0]);
+%[g p f w]=margin(sysbo);
+%Te = 0.05/w
+Te = 0.05
 
 %ki_teta=omega*omega/alpha
 %kp_teta=2*ksi*omega/alpha

@@ -97,6 +97,10 @@ void calibration_auto_step(void) {
 	display_int(right_max, 4);
 	display_string(" right max");
 
+	display_goto_xy(0,4);
+	display_int(ecrobot_get_sonar_sensor(NXT_PORT_S3), 4);
+	display_string(" distance");
+
 	display_update();
 }
 
