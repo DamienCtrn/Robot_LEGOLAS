@@ -32,5 +32,5 @@ controller.lus: ExRobotAndEnvironmentControllerContPI.mdl
 clear: clean
 	rm -f controller.xml controller.c controller.h controller.lus controller.ec controller.mws
 
-run:
+flash:
 	t2n -put controller.rxe

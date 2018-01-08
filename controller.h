@@ -26,7 +26,7 @@ typedef float _float;
 //IN: _real Cg
 //IN: _real Cd
 //IN: _integer Jean_Michel
-//IN: _boolean Jean_Reset
+//IN: _boolean Jean_Ren__
 //OUT: _real v_d
 //OUT: _real v_g
 #ifndef _controller_EC2C_SRC_FILE
@@ -34,7 +34,7 @@ typedef float _float;
 extern void controller_I_Cg(_real);
 extern void controller_I_Cd(_real);
 extern void controller_I_Jean_Michel(_integer);
-extern void controller_I_Jean_Reset(_boolean);
+extern void controller_I_Jean_Ren__(_boolean);
 /*-------- Reset procedure -----------*/
 extern void controller_reset();
 /*--------Context init = context reset --------*/

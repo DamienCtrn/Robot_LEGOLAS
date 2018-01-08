@@ -23,7 +23,7 @@ typedef struct  {
    _real _Cg;
    _real _Cd;
    _integer _Jean_Michel;
-   _boolean _Jean_Reset;
+   _boolean _Jean_Ren__;
    //OUTPUTS
    _real _v_d;
    _real _v_g;
@@ -56,8 +56,8 @@ void controller_I_Cd(_real V){
 void controller_I_Jean_Michel(_integer V){
    ctx._Jean_Michel = V;
 }
-void controller_I_Jean_Reset(_boolean V){
-   ctx._Jean_Reset = V;
+void controller_I_Jean_Ren__(_boolean V){
+   ctx._Jean_Ren__ = V;
 }
 extern void controller_O_v_d(_real);
 extern void controller_O_v_g(_real);
@@ -151,7 +151,7 @@ void controller_step(){
    } else {
       L16 = ctx.M17;
    }
-   L15 = (L16 || ctx._Jean_Reset);
+   L15 = (L16 || ctx._Jean_Ren__);
    L14 = (! L15);
    L5 = (L6 && L14);
    if (ctx.M8) {

@@ -6,33 +6,33 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.313"
+    ComputedModelVersion    "1.323"
     NumModelReferences	    0
     NumTestPointedSignals   4
     TestPointedSignal {
       SignalName	      ""
-      FullBlockPath	      "ExRobotAndEnvironmentControllerContPI/controller/Ligne Blanche"
+      FullBlockPath	      "ExRobotAndEnvironmentControllerContPI/controller/obst_ctrl/Ligne Blanche"
       LogSignal		      1
       MaxPoints		      5000
       Decimation	      2
     }
     TestPointedSignal {
       SignalName	      ""
-      FullBlockPath	      "ExRobotAndEnvironmentControllerContPI/controller/Ligne Noire"
+      FullBlockPath	      "ExRobotAndEnvironmentControllerContPI/controller/obst_ctrl/Ligne Noire"
       LogSignal		      1
       MaxPoints		      5000
       Decimation	      2
     }
     TestPointedSignal {
       SignalName	      ""
-      FullBlockPath	      "ExRobotAndEnvironmentControllerContPI/controller/Logical Operator4"
+      FullBlockPath	      "ExRobotAndEnvironmentControllerContPI/controller/obst_ctrl/Logical Operator4"
       LogSignal		      1
       MaxPoints		      5000
       Decimation	      2
     }
     TestPointedSignal {
       SignalName	      ""
-      FullBlockPath	      "ExRobotAndEnvironmentControllerContPI/controller/Obstacle"
+      FullBlockPath	      "ExRobotAndEnvironmentControllerContPI/controller/obst_ctrl/Obstacle"
       LogSignal		      1
       MaxPoints		      5000
       Decimation	      2
@@ -96,8 +96,8 @@ Model {
 	ViewObjType		"SimulinkSubsys"
 	LoadSaveID		"147"
 	Extents			[1882.0, 830.0]
-	ZoomFactor		[1.5]
-	Offset			[-228.64261442795464, 164.43877121564395]
+	ZoomFactor		[1.25]
+	Offset			[-348.24261442795455, 134.1721045489773]
       }
       Object {
 	$PropName		"DockComponentsInfo"
@@ -131,9 +131,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "cathrind"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Mon Jan 08 14:59:15 2018"
-  RTWModifiedTimeStamp	  437324319
-  ModelVersionFormat	  "1.%<AutoIncrement:313>"
+  LastModifiedDate	  "Mon Jan 08 16:35:11 2018"
+  RTWModifiedTimeStamp	  437330003
+  ModelVersionFormat	  "1.%<AutoIncrement:323>"
   ConfigurationManager	  "none"
   SampleTimeColors	  on
   SampleTimeAnnotations	  off
@@ -208,7 +208,7 @@ Model {
       Dimension		      4
       MATStruct {
 	UUID			"458783da-fbd7-4f08-bcc4-39c0f240640a"
-	BlockPath_		"controller/Obstacle"
+	BlockPath_		"controller/obst_ctrl/Obstacle"
 	SID_			"543"
 	SubPath_		""
 	OutputPortIndex_	[1.0]
@@ -221,7 +221,7 @@ Model {
       }
       MATStruct {
 	UUID			"c4d72ee1-e8ac-4cea-b4b5-387f15468f7e"
-	BlockPath_		"controller/Ligne Noire"
+	BlockPath_		"controller/obst_ctrl/Ligne Noire"
 	SID_			"549"
 	SubPath_		""
 	OutputPortIndex_	[1.0]
@@ -234,7 +234,7 @@ Model {
       }
       MATStruct {
 	UUID			"215b4e10-5def-44e2-a632-a2f9f68affe4"
-	BlockPath_		"controller/Ligne Blanche"
+	BlockPath_		"controller/obst_ctrl/Ligne Blanche"
 	SID_			"559"
 	SubPath_		""
 	OutputPortIndex_	[1.0]
@@ -247,7 +247,7 @@ Model {
       }
       MATStruct {
 	UUID			"52fe107b-c927-4659-aa50-b16ae0052e52"
-	BlockPath_		"controller/Logical Operator4"
+	BlockPath_		"controller/obst_ctrl/Logical Operator4"
 	SID_			"567"
 	SubPath_		""
 	OutputPortIndex_	[1.0]
@@ -1325,7 +1325,7 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "150"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "580"
+    SIDHighWatermark	    "597"
     Block {
       BlockType		      SubSystem
       Name		      "Environment"
@@ -1966,20 +1966,21 @@ Model {
 	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
-	ZoomFactor		"150"
+	ZoomFactor		"125"
 	Block {
 	  BlockType		  Inport
 	  Name			  "Cg"
 	  SID			  "458"
 	  Position		  [-20, 223, 10, 237]
 	  ZOrder		  -1
+	  NamePlacement		  "alternate"
 	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Inport
 	  Name			  "Cd"
 	  SID			  "459"
-	  Position		  [-20, 248, 10, 262]
+	  Position		  [-20, 243, 10, 257]
 	  ZOrder		  -2
 	  Port			  "2"
 	  IconDisplay		  "Port number"
@@ -1990,31 +1991,30 @@ Model {
 	  SID			  "508"
 	  Position		  [-20, 318, 10, 332]
 	  ZOrder		  5
+	  NamePlacement		  "alternate"
 	  Port			  "3"
 	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Inport
-	  Name			  "Jean Reset"
+	  Name			  "Jean René"
 	  SID			  "580"
-	  Position		  [130, 693, 160, 707]
+	  Position		  [-20, 338, 10, 352]
 	  ZOrder		  35
-	  BlockMirror		  on
-	  NamePlacement		  "alternate"
 	  Port			  "4"
 	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  SubSystem
-	  Name			  "Correcteurs"
-	  SID			  "485"
-	  Ports			  [2, 2]
-	  Position		  [270, 216, 360, 269]
-	  ZOrder		  -4
+	  Name			  "line_ctrl"
+	  SID			  "581"
+	  Ports			  [3, 2]
+	  Position		  [360, 220, 460, 280]
+	  ZOrder		  36
 	  RequestExecContextInheritance	off
 	  Variant		  off
 	  System {
-	    Name		    "Correcteurs"
+	    Name		    "line_ctrl"
 	    Location		    [0, 28, 1920, 1046]
 	    Open		    off
 	    PortBlocksUseCompactNotation off
@@ -2023,744 +2023,769 @@ Model {
 	    ScreenColor		    "white"
 	    PaperOrientation	    "landscape"
 	    PaperPositionMode	    "auto"
-	    PaperType		    "A4"
-	    PaperUnits		    "centimeters"
-	    TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
+	    PaperType		    "usletter"
+	    PaperUnits		    "inches"
+	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "125"
-	    Block {
-	      BlockType		      Inport
-	      Name		      "eps_teta"
-	      SID		      "487"
-	      Position		      [-10, 183, 20, 197]
-	      ZOrder		      -1
-	      IconDisplay	      "Port number"
-	    }
-	    Block {
-	      BlockType		      Inport
-	      Name		      "eps_delta"
-	      SID		      "489"
-	      Position		      [25, 458, 55, 472]
-	      ZOrder		      -2
-	      Port		      "2"
-	      IconDisplay	      "Port number"
-	    }
-	    Block {
-	      BlockType		      Gain
-	      Name		      "1/2  (1)"
-	      SID		      "460"
-	      Position		      [555, 205, 585, 235]
-	      ZOrder		      -3
-	      ShowName		      off
-	      Gain		      "0.5"
-	    }
-	    Block {
-	      BlockType		      Gain
-	      Name		      "1/2 (2)"
-	      SID		      "461"
-	      Position		      [555, 305, 585, 335]
-	      ZOrder		      -4
-	      ShowName		      off
-	      Gain		      "0.5"
-	    }
-	    Block {
-	      BlockType		      Abs
-	      Name		      "Abs Du"
-	      SID		      "462"
-	      Position		      [270, 325, 300, 355]
-	      ZOrder		      -5
-	    }
-	    Block {
-	      BlockType		      Sum
-	      Name		      "Sum1"
-	      SID		      "465"
-	      Ports		      [2, 1]
-	      Position		      [285, 125, 305, 145]
-	      ZOrder		      -7
-	      ShowName		      off
-	      IconShape		      "round"
-	      Inputs		      "|++"
-	      InputSameDT	      off
-	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
-	      Port {
-		PortNumber		1
-		Name			"u_theta"
-	      }
-	    }
-	    Block {
-	      BlockType		      Sum
-	      Name		      "Sum10"
-	      SID		      "466"
-	      Ports		      [2, 1]
-	      Position		      [310, 355, 330, 375]
-	      ZOrder		      -8
-	      ShowName		      off
-	      IconShape		      "round"
-	      Inputs		      "-+"
-	      InputSameDT	      off
-	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
-	    }
-	    Block {
-	      BlockType		      Sum
-	      Name		      "Sum2"
-	      SID		      "467"
-	      Ports		      [2, 1]
-	      Position		      [450, 210, 470, 230]
-	      ZOrder		      -9
-	      ShowName		      off
-	      IconShape		      "round"
-	      Inputs		      "|++"
-	      InputSameDT	      off
-	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
-	    }
-	    Block {
-	      BlockType		      Sum
-	      Name		      "Sum3"
-	      SID		      "468"
-	      Ports		      [2, 1]
-	      Position		      [495, 310, 515, 330]
-	      ZOrder		      -10
-	      ShowName		      off
-	      IconShape		      "round"
-	      Inputs		      "|-+"
-	      InputSameDT	      off
-	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
-	    }
-	    Block {
-	      BlockType		      Sum
-	      Name		      "Sum4"
-	      SID		      "537"
-	      Ports		      [2, 1]
-	      Position		      [95, 125, 115, 145]
-	      ZOrder		      4
-	      ShowName		      off
-	      IconShape		      "round"
-	      Inputs		      "|++"
-	      InputSameDT	      off
-	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
-	    }
-	    Block {
-	      BlockType		      UnitDelay
-	      Name		      "Unit Delay"
-	      SID		      "536"
-	      Position		      [130, 118, 165, 152]
-	      ZOrder		      3
-	      InputProcessing	      "Elements as channels (sample based)"
-	      SampleTime	      "-1"
-	    }
-	    Block {
-	      BlockType		      Gain
-	      Name		      "k"
-	      SID		      "473"
-	      Position		      [215, 325, 245, 355]
-	      ZOrder		      -11
-	      ShowName		      off
-	      Gain		      "2"
-	    }
-	    Block {
-	      BlockType		      Gain
-	      Name		      "ki_teta"
-	      SID		      "474"
-	      Position		      [205, 120, 235, 150]
-	      ZOrder		      -12
-	      Gain		      "ki_teta"
-	    }
-	    Block {
-	      BlockType		      Gain
-	      Name		      "kp_delta"
-	      SID		      "475"
-	      Position		      [165, 450, 195, 480]
-	      ZOrder		      -13
-	      Gain		      "0.005"
-	      ParamDataTypeStr	      "Inherit: Inherit via internal rule"
-	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
-	      SaturateOnIntegerOverflow	off
-	      Port {
-		PortNumber		1
-		Name			"u_delta"
-	      }
-	    }
-	    Block {
-	      BlockType		      Gain
-	      Name		      "kp_teta"
-	      SID		      "476"
-	      Position		      [190, 175, 220, 205]
-	      ZOrder		      -14
-	      Gain		      "kp_teta"
-	    }
-	    Block {
-	      BlockType		      Gain
-	      Name		      "x1"
-	      SID		      "535"
-	      Position		      [50, 120, 80, 150]
-	      ZOrder		      2
-	      ShowName		      off
-	      Gain		      "Te"
-	    }
-	    Block {
-	      BlockType		      Gain
-	      Name		      "x2"
-	      SID		      "477"
-	      Position		      [370, 350, 400, 380]
-	      ZOrder		      -15
-	      ShowName		      off
-	      Gain		      "2"
-	    }
-	    Block {
-	      BlockType		      Outport
-	      Name		      "v_d"
-	      SID		      "486"
-	      Position		      [610, 213, 640, 227]
-	      ZOrder		      -16
-	      IconDisplay	      "Port number"
-	    }
-	    Block {
-	      BlockType		      Outport
-	      Name		      "v_g"
-	      SID		      "488"
-	      Position		      [610, 313, 640, 327]
-	      ZOrder		      -17
-	      Port		      "2"
-	      IconDisplay	      "Port number"
-	    }
-	    Line {
-	      ZOrder		      1
-	      SrcBlock		      "ki_teta"
-	      SrcPort		      1
-	      DstBlock		      "Sum1"
-	      DstPort		      1
-	    }
-	    Line {
-	      ZOrder		      2
-	      SrcBlock		      "kp_teta"
-	      SrcPort		      1
-	      Points		      [70, 0]
-	      DstBlock		      "Sum1"
-	      DstPort		      2
-	    }
-	    Line {
-	      ZOrder		      3
-	      SrcBlock		      "Sum2"
-	      SrcPort		      1
-	      DstBlock		      "1/2  (1)"
-	      DstPort		      1
-	    }
-	    Line {
-	      ZOrder		      4
-	      SrcBlock		      "Sum3"
-	      SrcPort		      1
-	      DstBlock		      "1/2 (2)"
-	      DstPort		      1
-	    }
-	    Line {
-	      ZOrder		      5
-	      SrcBlock		      "k"
-	      SrcPort		      1
-	      DstBlock		      "Abs Du"
-	      DstPort		      1
-	    }
-	    Line {
-	      Name		      "u_delta"
-	      ZOrder		      6
-	      Labels		      [0, 0]
-	      SrcBlock		      "kp_delta"
-	      SrcPort		      1
-	      Points		      [120, 0]
-	      DstBlock		      "Sum10"
-	      DstPort		      2
-	    }
-	    Line {
-	      ZOrder		      10
-	      SrcBlock		      "Abs Du"
-	      SrcPort		      1
-	      DstBlock		      "Sum10"
-	      DstPort		      1
-	    }
-	    Line {
-	      ZOrder		      11
-	      SrcBlock		      "x2"
-	      SrcPort		      1
-	      Points		      [55, 0]
-	      Branch {
-		ZOrder			12
-		DstBlock		"Sum2"
-		DstPort			2
-	      }
-	      Branch {
-		ZOrder			13
-		Points			[45, 0]
-		DstBlock		"Sum3"
-		DstPort			2
-	      }
-	    }
-	    Line {
-	      ZOrder		      14
-	      SrcBlock		      "Sum10"
-	      SrcPort		      1
-	      DstBlock		      "x2"
-	      DstPort		      1
-	    }
-	    Line {
-	      Name		      "u_theta"
-	      ZOrder		      15
-	      Labels		      [0, 0]
-	      SrcBlock		      "Sum1"
-	      SrcPort		      1
-	      Points		      [40, 0; 0, 85]
-	      Branch {
-		ZOrder			16
-		Points			[0, 65; -170, 0; 0, 55]
-		DstBlock		"k"
-		DstPort			1
-	      }
-	      Branch {
-		ZOrder			17
-		Points			[45, 0]
-		Branch {
-		  ZOrder		  18
-		  DstBlock		  "Sum2"
-		  DstPort		  1
-		}
-		Branch {
-		  ZOrder		  19
-		  Points		  [0, 100]
-		  DstBlock		  "Sum3"
-		  DstPort		  1
-		}
-	      }
-	    }
-	    Line {
-	      ZOrder		      20
-	      SrcBlock		      "1/2  (1)"
-	      SrcPort		      1
-	      DstBlock		      "v_d"
-	      DstPort		      1
-	    }
-	    Line {
-	      ZOrder		      21
-	      SrcBlock		      "1/2 (2)"
-	      SrcPort		      1
-	      DstBlock		      "v_g"
-	      DstPort		      1
-	    }
-	    Line {
-	      ZOrder		      22
-	      SrcBlock		      "eps_delta"
-	      SrcPort		      1
-	      DstBlock		      "kp_delta"
-	      DstPort		      1
-	    }
-	    Line {
-	      ZOrder		      7
-	      SrcBlock		      "eps_teta"
-	      SrcPort		      1
-	      Points		      [8, 0]
-	      Branch {
-		ZOrder			59
-		Points			[0, -55]
-		DstBlock		"x1"
-		DstPort			1
-	      }
-	      Branch {
-		ZOrder			58
-		DstBlock		"kp_teta"
-		DstPort			1
-	      }
-	    }
-	    Line {
-	      ZOrder		      50
-	      SrcBlock		      "Sum4"
-	      SrcPort		      1
-	      DstBlock		      "Unit Delay"
-	      DstPort		      1
-	    }
-	    Line {
-	      ZOrder		      51
-	      SrcBlock		      "x1"
-	      SrcPort		      1
-	      DstBlock		      "Sum4"
-	      DstPort		      1
-	    }
-	    Line {
-	      ZOrder		      52
-	      SrcBlock		      "Unit Delay"
-	      SrcPort		      1
-	      Points		      [10, 0]
-	      Branch {
-		ZOrder			56
-		Points			[0, 44; -75, 0]
-		DstBlock		"Sum4"
-		DstPort			2
-	      }
-	      Branch {
-		ZOrder			54
-		DstBlock		"ki_teta"
-		DstPort			1
-	      }
-	    }
-	  }
-	}
-	Block {
-	  BlockType		  SubSystem
-	  Name			  "Ecarts"
-	  SID			  "480"
-	  Ports			  [2, 2]
-	  Position		  [80, 215, 160, 270]
-	  ZOrder		  -3
-	  RequestExecContextInheritance	off
-	  Variant		  off
-	  System {
-	    Name		    "Ecarts"
-	    Location		    [0, 28, 1920, 1046]
-	    Open		    off
-	    PortBlocksUseCompactNotation off
-	    ModelBrowserVisibility  off
-	    ModelBrowserWidth	    200
-	    ScreenColor		    "white"
-	    PaperOrientation	    "landscape"
-	    PaperPositionMode	    "auto"
-	    PaperType		    "A4"
-	    PaperUnits		    "centimeters"
-	    TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
-	    TiledPageScale	    1
-	    ShowPageBoundaries	    off
-	    ZoomFactor		    "100"
+	    ZoomFactor		    "150"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "Cg"
-	      SID		      "482"
-	      Position		      [25, 163, 55, 177]
-	      ZOrder		      -1
+	      SID		      "597"
+	      Position		      [45, 28, 75, 42]
+	      ZOrder		      14
+	      NamePlacement	      "alternate"
 	      IconDisplay	      "Port number"
 	    }
 	    Block {
 	      BlockType		      Inport
 	      Name		      "Cd"
-	      SID		      "483"
-	      Position		      [25, 33, 55, 47]
-	      ZOrder		      -2
+	      SID		      "596"
+	      Position		      [45, 53, 75, 67]
+	      ZOrder		      13
 	      Port		      "2"
 	      IconDisplay	      "Port number"
 	    }
 	    Block {
+	      BlockType		      Inport
+	      Name		      "Obst"
+	      SID		      "592"
+	      Position		      [45, 108, 75, 122]
+	      ZOrder		      10
+	      Port		      "3"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      SubSystem
+	      Name		      "Correcteurs"
+	      SID		      "485"
+	      Ports		      [2, 2]
+	      Position		      [315, 21, 405, 74]
+	      ZOrder		      -4
+	      RequestExecContextInheritance off
+	      Variant		      off
+	      System {
+		Name			"Correcteurs"
+		Location		[0, 28, 1920, 1046]
+		Open			off
+		PortBlocksUseCompactNotation off
+		ModelBrowserVisibility	off
+		ModelBrowserWidth	200
+		ScreenColor		"white"
+		PaperOrientation	"landscape"
+		PaperPositionMode	"auto"
+		PaperType		"A4"
+		PaperUnits		"centimeters"
+		TiledPaperMargins	[1.270000, 1.270000, 1.270000, 1.270000]
+		TiledPageScale		1
+		ShowPageBoundaries	off
+		ZoomFactor		"125"
+		Block {
+		  BlockType		  Inport
+		  Name			  "eps_teta"
+		  SID			  "487"
+		  Position		  [-10, 183, 20, 197]
+		  ZOrder		  -1
+		  IconDisplay		  "Port number"
+		}
+		Block {
+		  BlockType		  Inport
+		  Name			  "eps_delta"
+		  SID			  "489"
+		  Position		  [25, 458, 55, 472]
+		  ZOrder		  -2
+		  Port			  "2"
+		  IconDisplay		  "Port number"
+		}
+		Block {
+		  BlockType		  Gain
+		  Name			  "1/2  (1)"
+		  SID			  "460"
+		  Position		  [555, 205, 585, 235]
+		  ZOrder		  -3
+		  ShowName		  off
+		  Gain			  "0.5"
+		}
+		Block {
+		  BlockType		  Gain
+		  Name			  "1/2 (2)"
+		  SID			  "461"
+		  Position		  [555, 305, 585, 335]
+		  ZOrder		  -4
+		  ShowName		  off
+		  Gain			  "0.5"
+		}
+		Block {
+		  BlockType		  Abs
+		  Name			  "Abs Du"
+		  SID			  "462"
+		  Position		  [270, 325, 300, 355]
+		  ZOrder		  -5
+		}
+		Block {
+		  BlockType		  Sum
+		  Name			  "Sum1"
+		  SID			  "465"
+		  Ports			  [2, 1]
+		  Position		  [285, 125, 305, 145]
+		  ZOrder		  -7
+		  ShowName		  off
+		  IconShape		  "round"
+		  Inputs		  "|++"
+		  InputSameDT		  off
+		  OutDataTypeStr	  "Inherit: Inherit via internal rule"
+		  Port {
+		    PortNumber		    1
+		    Name		    "u_theta"
+		  }
+		}
+		Block {
+		  BlockType		  Sum
+		  Name			  "Sum10"
+		  SID			  "466"
+		  Ports			  [2, 1]
+		  Position		  [310, 355, 330, 375]
+		  ZOrder		  -8
+		  ShowName		  off
+		  IconShape		  "round"
+		  Inputs		  "-+"
+		  InputSameDT		  off
+		  OutDataTypeStr	  "Inherit: Inherit via internal rule"
+		}
+		Block {
+		  BlockType		  Sum
+		  Name			  "Sum2"
+		  SID			  "467"
+		  Ports			  [2, 1]
+		  Position		  [450, 210, 470, 230]
+		  ZOrder		  -9
+		  ShowName		  off
+		  IconShape		  "round"
+		  Inputs		  "|++"
+		  InputSameDT		  off
+		  OutDataTypeStr	  "Inherit: Inherit via internal rule"
+		}
+		Block {
+		  BlockType		  Sum
+		  Name			  "Sum3"
+		  SID			  "468"
+		  Ports			  [2, 1]
+		  Position		  [495, 310, 515, 330]
+		  ZOrder		  -10
+		  ShowName		  off
+		  IconShape		  "round"
+		  Inputs		  "|-+"
+		  InputSameDT		  off
+		  OutDataTypeStr	  "Inherit: Inherit via internal rule"
+		}
+		Block {
+		  BlockType		  Sum
+		  Name			  "Sum4"
+		  SID			  "537"
+		  Ports			  [2, 1]
+		  Position		  [95, 125, 115, 145]
+		  ZOrder		  4
+		  ShowName		  off
+		  IconShape		  "round"
+		  Inputs		  "|++"
+		  InputSameDT		  off
+		  OutDataTypeStr	  "Inherit: Inherit via internal rule"
+		}
+		Block {
+		  BlockType		  UnitDelay
+		  Name			  "Unit Delay"
+		  SID			  "536"
+		  Position		  [130, 118, 165, 152]
+		  ZOrder		  3
+		  InputProcessing	  "Elements as channels (sample based)"
+		  SampleTime		  "-1"
+		}
+		Block {
+		  BlockType		  Gain
+		  Name			  "k"
+		  SID			  "473"
+		  Position		  [215, 325, 245, 355]
+		  ZOrder		  -11
+		  ShowName		  off
+		  Gain			  "2"
+		}
+		Block {
+		  BlockType		  Gain
+		  Name			  "ki_teta"
+		  SID			  "474"
+		  Position		  [205, 120, 235, 150]
+		  ZOrder		  -12
+		  Gain			  "ki_teta"
+		}
+		Block {
+		  BlockType		  Gain
+		  Name			  "kp_delta"
+		  SID			  "475"
+		  Position		  [165, 450, 195, 480]
+		  ZOrder		  -13
+		  Gain			  "0.005"
+		  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
+		  OutDataTypeStr	  "Inherit: Inherit via internal rule"
+		  SaturateOnIntegerOverflow off
+		  Port {
+		    PortNumber		    1
+		    Name		    "u_delta"
+		  }
+		}
+		Block {
+		  BlockType		  Gain
+		  Name			  "kp_teta"
+		  SID			  "476"
+		  Position		  [190, 175, 220, 205]
+		  ZOrder		  -14
+		  Gain			  "kp_teta"
+		}
+		Block {
+		  BlockType		  Gain
+		  Name			  "x1"
+		  SID			  "535"
+		  Position		  [50, 120, 80, 150]
+		  ZOrder		  2
+		  ShowName		  off
+		  Gain			  "Te"
+		}
+		Block {
+		  BlockType		  Gain
+		  Name			  "x2"
+		  SID			  "477"
+		  Position		  [370, 350, 400, 380]
+		  ZOrder		  -15
+		  ShowName		  off
+		  Gain			  "2"
+		}
+		Block {
+		  BlockType		  Outport
+		  Name			  "v_d"
+		  SID			  "486"
+		  Position		  [610, 213, 640, 227]
+		  ZOrder		  -16
+		  IconDisplay		  "Port number"
+		}
+		Block {
+		  BlockType		  Outport
+		  Name			  "v_g"
+		  SID			  "488"
+		  Position		  [610, 313, 640, 327]
+		  ZOrder		  -17
+		  Port			  "2"
+		  IconDisplay		  "Port number"
+		}
+		Line {
+		  ZOrder		  1
+		  SrcBlock		  "ki_teta"
+		  SrcPort		  1
+		  DstBlock		  "Sum1"
+		  DstPort		  1
+		}
+		Line {
+		  ZOrder		  2
+		  SrcBlock		  "kp_teta"
+		  SrcPort		  1
+		  Points		  [70, 0]
+		  DstBlock		  "Sum1"
+		  DstPort		  2
+		}
+		Line {
+		  ZOrder		  3
+		  SrcBlock		  "Sum2"
+		  SrcPort		  1
+		  DstBlock		  "1/2  (1)"
+		  DstPort		  1
+		}
+		Line {
+		  ZOrder		  4
+		  SrcBlock		  "Sum3"
+		  SrcPort		  1
+		  DstBlock		  "1/2 (2)"
+		  DstPort		  1
+		}
+		Line {
+		  ZOrder		  5
+		  SrcBlock		  "k"
+		  SrcPort		  1
+		  DstBlock		  "Abs Du"
+		  DstPort		  1
+		}
+		Line {
+		  Name			  "u_delta"
+		  ZOrder		  6
+		  Labels		  [0, 0]
+		  SrcBlock		  "kp_delta"
+		  SrcPort		  1
+		  Points		  [120, 0]
+		  DstBlock		  "Sum10"
+		  DstPort		  2
+		}
+		Line {
+		  ZOrder		  10
+		  SrcBlock		  "Abs Du"
+		  SrcPort		  1
+		  DstBlock		  "Sum10"
+		  DstPort		  1
+		}
+		Line {
+		  ZOrder		  11
+		  SrcBlock		  "x2"
+		  SrcPort		  1
+		  Points		  [55, 0]
+		  Branch {
+		    ZOrder		    12
+		    DstBlock		    "Sum2"
+		    DstPort		    2
+		  }
+		  Branch {
+		    ZOrder		    13
+		    Points		    [45, 0]
+		    DstBlock		    "Sum3"
+		    DstPort		    2
+		  }
+		}
+		Line {
+		  ZOrder		  14
+		  SrcBlock		  "Sum10"
+		  SrcPort		  1
+		  DstBlock		  "x2"
+		  DstPort		  1
+		}
+		Line {
+		  Name			  "u_theta"
+		  ZOrder		  15
+		  Labels		  [0, 0]
+		  SrcBlock		  "Sum1"
+		  SrcPort		  1
+		  Points		  [40, 0; 0, 85]
+		  Branch {
+		    ZOrder		    16
+		    Points		    [0, 65; -170, 0; 0, 55]
+		    DstBlock		    "k"
+		    DstPort		    1
+		  }
+		  Branch {
+		    ZOrder		    17
+		    Points		    [45, 0]
+		    Branch {
+		    ZOrder		    18
+		    DstBlock		    "Sum2"
+		    DstPort		    1
+		    }
+		    Branch {
+		    ZOrder		    19
+		    Points		    [0, 100]
+		    DstBlock		    "Sum3"
+		    DstPort		    1
+		    }
+		  }
+		}
+		Line {
+		  ZOrder		  20
+		  SrcBlock		  "1/2  (1)"
+		  SrcPort		  1
+		  DstBlock		  "v_d"
+		  DstPort		  1
+		}
+		Line {
+		  ZOrder		  21
+		  SrcBlock		  "1/2 (2)"
+		  SrcPort		  1
+		  DstBlock		  "v_g"
+		  DstPort		  1
+		}
+		Line {
+		  ZOrder		  22
+		  SrcBlock		  "eps_delta"
+		  SrcPort		  1
+		  DstBlock		  "kp_delta"
+		  DstPort		  1
+		}
+		Line {
+		  ZOrder		  7
+		  SrcBlock		  "eps_teta"
+		  SrcPort		  1
+		  Points		  [8, 0]
+		  Branch {
+		    ZOrder		    59
+		    Points		    [0, -55]
+		    DstBlock		    "x1"
+		    DstPort		    1
+		  }
+		  Branch {
+		    ZOrder		    58
+		    DstBlock		    "kp_teta"
+		    DstPort		    1
+		  }
+		}
+		Line {
+		  ZOrder		  50
+		  SrcBlock		  "Sum4"
+		  SrcPort		  1
+		  DstBlock		  "Unit Delay"
+		  DstPort		  1
+		}
+		Line {
+		  ZOrder		  51
+		  SrcBlock		  "x1"
+		  SrcPort		  1
+		  DstBlock		  "Sum4"
+		  DstPort		  1
+		}
+		Line {
+		  ZOrder		  52
+		  SrcBlock		  "Unit Delay"
+		  SrcPort		  1
+		  Points		  [10, 0]
+		  Branch {
+		    ZOrder		    56
+		    Points		    [0, 44; -75, 0]
+		    DstBlock		    "Sum4"
+		    DstPort		    2
+		  }
+		  Branch {
+		    ZOrder		    54
+		    DstBlock		    "ki_teta"
+		    DstPort		    1
+		  }
+		}
+	      }
+	    }
+	    Block {
+	      BlockType		      SubSystem
+	      Name		      "Ecarts"
+	      SID		      "480"
+	      Ports		      [2, 2]
+	      Position		      [125, 20, 205, 75]
+	      ZOrder		      -3
+	      RequestExecContextInheritance off
+	      Variant		      off
+	      System {
+		Name			"Ecarts"
+		Location		[0, 28, 1920, 1046]
+		Open			off
+		PortBlocksUseCompactNotation off
+		ModelBrowserVisibility	off
+		ModelBrowserWidth	200
+		ScreenColor		"white"
+		PaperOrientation	"landscape"
+		PaperPositionMode	"auto"
+		PaperType		"A4"
+		PaperUnits		"centimeters"
+		TiledPaperMargins	[1.270000, 1.270000, 1.270000, 1.270000]
+		TiledPageScale		1
+		ShowPageBoundaries	off
+		ZoomFactor		"100"
+		Block {
+		  BlockType		  Inport
+		  Name			  "Cg"
+		  SID			  "482"
+		  Position		  [25, 163, 55, 177]
+		  ZOrder		  -1
+		  IconDisplay		  "Port number"
+		}
+		Block {
+		  BlockType		  Inport
+		  Name			  "Cd"
+		  SID			  "483"
+		  Position		  [25, 33, 55, 47]
+		  ZOrder		  -2
+		  Port			  "2"
+		  IconDisplay		  "Port number"
+		}
+		Block {
+		  BlockType		  Gain
+		  Name			  "Gain"
+		  SID			  "463"
+		  Position		  [280, 25, 310, 55]
+		  ZOrder		  -3
+		  Gain			  "pi/200"
+		  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
+		  OutDataTypeStr	  "Inherit: Inherit via internal rule"
+		  SaturateOnIntegerOverflow off
+		}
+		Block {
+		  BlockType		  Sum
+		  Name			  "Sum"
+		  SID			  "464"
+		  Ports			  [2, 1]
+		  Position		  [215, 30, 235, 50]
+		  ZOrder		  -4
+		  ShowName		  off
+		  IconShape		  "round"
+		  Inputs		  "|+-"
+		  InputSameDT		  off
+		  OutDataTypeStr	  "Inherit: Inherit via internal rule"
+		  SaturateOnIntegerOverflow off
+		}
+		Block {
+		  BlockType		  Sum
+		  Name			  "Sum5"
+		  SID			  "470"
+		  Ports			  [2, 1]
+		  Position		  [270, 115, 290, 135]
+		  ZOrder		  -5
+		  ShowName		  off
+		  IconShape		  "round"
+		  Inputs		  "|++"
+		  InputSameDT		  off
+		  OutDataTypeStr	  "Inherit: Inherit via internal rule"
+		  SaturateOnIntegerOverflow off
+		}
+		Block {
+		  BlockType		  Outport
+		  Name			  "eps_teta"
+		  SID			  "481"
+		  Position		  [335, 33, 365, 47]
+		  ZOrder		  -6
+		  IconDisplay		  "Port number"
+		}
+		Block {
+		  BlockType		  Outport
+		  Name			  "eps_delta"
+		  SID			  "484"
+		  Position		  [335, 118, 365, 132]
+		  ZOrder		  -7
+		  Port			  "2"
+		  IconDisplay		  "Port number"
+		}
+		Line {
+		  ZOrder		  1
+		  SrcBlock		  "Sum"
+		  SrcPort		  1
+		  DstBlock		  "Gain"
+		  DstPort		  1
+		}
+		Line {
+		  ZOrder		  2
+		  SrcBlock		  "Cd"
+		  SrcPort		  1
+		  Points		  [100, 0]
+		  Branch {
+		    ZOrder		    3
+		    DstBlock		    "Sum"
+		    DstPort		    1
+		  }
+		  Branch {
+		    ZOrder		    4
+		    Points		    [0, 85]
+		    DstBlock		    "Sum5"
+		    DstPort		    1
+		  }
+		}
+		Line {
+		  ZOrder		  5
+		  SrcBlock		  "Cg"
+		  SrcPort		  1
+		  Points		  [165, 0]
+		  Branch {
+		    ZOrder		    6
+		    DstBlock		    "Sum"
+		    DstPort		    2
+		  }
+		  Branch {
+		    ZOrder		    7
+		    Points		    [55, 0]
+		    DstBlock		    "Sum5"
+		    DstPort		    2
+		  }
+		}
+		Line {
+		  ZOrder		  8
+		  SrcBlock		  "Gain"
+		  SrcPort		  1
+		  DstBlock		  "eps_teta"
+		  DstPort		  1
+		}
+		Line {
+		  ZOrder		  9
+		  SrcBlock		  "Sum5"
+		  SrcPort		  1
+		  DstBlock		  "eps_delta"
+		  DstPort		  1
+		}
+	      }
+	    }
+	    Block {
 	      BlockType		      Gain
 	      Name		      "Gain"
-	      SID		      "463"
-	      Position		      [280, 25, 310, 55]
-	      ZOrder		      -3
-	      Gain		      "pi/200"
+	      SID		      "507"
+	      Position		      [440, -25, 470, 5]
+	      ZOrder		      4
+	      BlockRotation	      270
+	      BlockMirror	      on
+	      NamePlacement	      "alternate"
+	      Gain		      "-1"
 	      ParamDataTypeStr	      "Inherit: Inherit via internal rule"
 	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
 	      SaturateOnIntegerOverflow	off
 	    }
 	    Block {
-	      BlockType		      Sum
-	      Name		      "Sum"
-	      SID		      "464"
-	      Ports		      [2, 1]
-	      Position		      [215, 30, 235, 50]
-	      ZOrder		      -4
-	      ShowName		      off
-	      IconShape		      "round"
-	      Inputs		      "|+-"
+	      BlockType		      Switch
+	      Name		      "Switch"
+	      SID		      "504"
+	      Position		      [525, 30, 575, 70]
+	      ZOrder		      1
+	      NamePlacement	      "alternate"
+	      Criteria		      "u2 > Threshold"
 	      InputSameDT	      off
-	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
 	      SaturateOnIntegerOverflow	off
 	    }
 	    Block {
-	      BlockType		      Sum
-	      Name		      "Sum5"
-	      SID		      "470"
-	      Ports		      [2, 1]
-	      Position		      [270, 115, 290, 135]
-	      ZOrder		      -5
-	      ShowName		      off
-	      IconShape		      "round"
-	      Inputs		      "|++"
+	      BlockType		      Switch
+	      Name		      "Switch1"
+	      SID		      "505"
+	      Position		      [525, 95, 575, 135]
+	      ZOrder		      2
+	      Criteria		      "u2 > Threshold"
 	      InputSameDT	      off
-	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
 	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      Constant
+	      Name		      "Vitesse Demi-Tour"
+	      SID		      "506"
+	      Position		      [485, -90, 515, -60]
+	      ZOrder		      3
+	      BlockRotation	      270
+	      BlockMirror	      on
+	      NamePlacement	      "alternate"
+	      Value		      "0.2"
+	      OutDataTypeStr	      "single"
 	    }
 	    Block {
 	      BlockType		      Outport
-	      Name		      "eps_teta"
-	      SID		      "481"
-	      Position		      [335, 33, 365, 47]
-	      ZOrder		      -6
+	      Name		      "Vd"
+	      SID		      "585"
+	      Position		      [615, 43, 645, 57]
+	      ZOrder		      8
 	      IconDisplay	      "Port number"
 	    }
 	    Block {
 	      BlockType		      Outport
-	      Name		      "eps_delta"
-	      SID		      "484"
-	      Position		      [335, 118, 365, 132]
-	      ZOrder		      -7
+	      Name		      "Vg"
+	      SID		      "586"
+	      Position		      [615, 108, 645, 122]
+	      ZOrder		      9
 	      Port		      "2"
 	      IconDisplay	      "Port number"
 	    }
 	    Line {
-	      ZOrder		      1
-	      SrcBlock		      "Sum"
+	      ZOrder		      150
+	      SrcBlock		      "Obst"
 	      SrcPort		      1
-	      DstBlock		      "Gain"
+	      Points		      [430, 0]
+	      Branch {
+		ZOrder			141
+		DstBlock		"Switch1"
+		DstPort			2
+	      }
+	      Branch {
+		ZOrder			131
+		DstBlock		"Switch"
+		DstPort			2
+	      }
+	    }
+	    Line {
+	      ZOrder		      140
+	      SrcBlock		      "Switch1"
+	      SrcPort		      1
+	      DstBlock		      "Vg"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      2
-	      SrcBlock		      "Cd"
+	      ZOrder		      42
+	      SrcBlock		      "Correcteurs"
 	      SrcPort		      1
-	      Points		      [100, 0]
+	      Points		      [70, 0; 0, 30]
+	      DstBlock		      "Switch"
+	      DstPort		      3
+	    }
+	    Line {
+	      ZOrder		      11
+	      SrcBlock		      "Vitesse Demi-Tour"
+	      SrcPort		      1
+	      Points		      [0, 11]
 	      Branch {
-		ZOrder			3
-		DstBlock		"Sum"
+		ZOrder			149
+		Points			[-45, 0]
+		DstBlock		"Gain"
 		DstPort			1
 	      }
 	      Branch {
-		ZOrder			4
-		Points			[0, 85]
-		DstBlock		"Sum5"
+		ZOrder			145
+		Points			[0, 79]
+		DstBlock		"Switch"
 		DstPort			1
 	      }
 	    }
 	    Line {
-	      ZOrder		      5
-	      SrcBlock		      "Cg"
+	      ZOrder		      139
+	      SrcBlock		      "Switch"
 	      SrcPort		      1
-	      Points		      [165, 0]
-	      Branch {
-		ZOrder			6
-		DstBlock		"Sum"
-		DstPort			2
-	      }
-	      Branch {
-		ZOrder			7
-		Points			[55, 0]
-		DstBlock		"Sum5"
-		DstPort			2
-	      }
+	      DstBlock		      "Vd"
+	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      8
+	      ZOrder		      3
+	      SrcBlock		      "Ecarts"
+	      SrcPort		      2
+	      DstBlock		      "Correcteurs"
+	      DstPort		      2
+	    }
+	    Line {
+	      ZOrder		      45
 	      SrcBlock		      "Gain"
 	      SrcPort		      1
-	      DstBlock		      "eps_teta"
-	      DstPort		      1
-	    }
-	    Line {
-	      ZOrder		      9
-	      SrcBlock		      "Sum5"
-	      SrcPort		      1
-	      DstBlock		      "eps_delta"
-	      DstPort		      1
-	    }
-	  }
-	}
-	Block {
-	  BlockType		  Gain
-	  Name			  "Gain"
-	  SID			  "507"
-	  Position		  [370, 310, 400, 340]
-	  ZOrder		  4
-	  Gain			  "-1"
-	  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
-	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
-	  SaturateOnIntegerOverflow off
-	}
-	Block {
-	  BlockType		  Constant
-	  Name			  "Jean Marc"
-	  SID			  "514"
-	  Position		  [-20, 400, 10, 430]
-	  ZOrder		  11
-	  Value			  "30"
-	  OutDataTypeStr	  "single"
-	}
-	Block {
-	  BlockType		  Constant
-	  Name			  "Jean Paul"
-	  SID			  "510"
-	  Position		  [-20, 350, 10, 380]
-	  ZOrder		  7
-	  Value			  "10"
-	  OutDataTypeStr	  "uint32"
-	}
-	Block {
-	  BlockType		  Constant
-	  Name			  "Jean Yves"
-	  SID			  "568"
-	  Position		  [-20, 500, 10, 530]
-	  ZOrder		  31
-	  Value			  "70"
-	  OutDataTypeStr	  "single"
-	}
-	Block {
-	  BlockType		  SubSystem
-	  Name			  "Ligne Blanche"
-	  SID			  "559"
-	  Ports			  [2, 1]
-	  Position		  [550, 490, 590, 550]
-	  ZOrder		  29
-	  RequestExecContextInheritance	off
-	  Variant		  off
-	  Port {
-	    PortNumber		    1
-	  }
-	  System {
-	    Name		    "Ligne Blanche"
-	    Location		    [0, 28, 1920, 1046]
-	    Open		    off
-	    PortBlocksUseCompactNotation off
-	    ModelBrowserVisibility  off
-	    ModelBrowserWidth	    200
-	    ScreenColor		    "white"
-	    PaperOrientation	    "landscape"
-	    PaperPositionMode	    "auto"
-	    PaperType		    "usletter"
-	    PaperUnits		    "inches"
-	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
-	    TiledPageScale	    1
-	    ShowPageBoundaries	    off
-	    ZoomFactor		    "175"
-	    Block {
-	      BlockType		      Inport
-	      Name		      "Set"
-	      SID		      "560"
-	      Position		      [25, 88, 55, 102]
-	      ZOrder		      23
-	      IconDisplay	      "Port number"
-	    }
-	    Block {
-	      BlockType		      Inport
-	      Name		      "Reset"
-	      SID		      "561"
-	      Position		      [25, 143, 55, 157]
-	      ZOrder		      24
-	      Port		      "2"
-	      IconDisplay	      "Port number"
-	    }
-	    Block {
-	      BlockType		      Logic
-	      Name		      "Logical\nOperator3"
-	      SID		      "562"
-	      Ports		      [2, 1]
-	      Position		      [160, 82, 190, 113]
-	      ZOrder		      20
-	      AllPortsSameDT	      off
-	      OutDataTypeStr	      "boolean"
-	    }
-	    Block {
-	      BlockType		      Logic
-	      Name		      "Logical\nOperator4"
-	      SID		      "563"
-	      Ports		      [1, 1]
-	      Position		      [75, 134, 105, 166]
-	      ZOrder		      22
-	      Operator		      "NOT"
-	      AllPortsSameDT	      off
-	      OutDataTypeStr	      "boolean"
-	    }
-	    Block {
-	      BlockType		      Logic
-	      Name		      "OR1"
-	      SID		      "564"
-	      Ports		      [2, 1]
-	      Position		      [70, 74, 100, 106]
-	      ZOrder		      19
-	      Operator		      "OR"
-	      IconShape		      "distinctive"
-	      AllPortsSameDT	      off
-	      OutDataTypeStr	      "boolean"
-	    }
-	    Block {
-	      BlockType		      UnitDelay
-	      Name		      "Unit Delay1"
-	      SID		      "565"
-	      Position		      [110, 18, 150, 52]
-	      ZOrder		      21
-	      BlockMirror	      on
-	      NamePlacement	      "alternate"
-	      InputProcessing	      "Elements as channels (sample based)"
-	      SampleTime	      "-1"
-	    }
-	    Block {
-	      BlockType		      Outport
-	      Name		      "Out"
-	      SID		      "566"
-	      Position		      [220, 93, 250, 107]
-	      ZOrder		      25
-	      IconDisplay	      "Port number"
-	    }
-	    Line {
-	      ZOrder		      1
-	      SrcBlock		      "Unit Delay1"
-	      SrcPort		      1
-	      Points		      [-46, 0]
-	      DstBlock		      "OR1"
-	      DstPort		      1
-	    }
-	    Line {
-	      ZOrder		      2
-	      SrcBlock		      "Logical\nOperator4"
-	      SrcPort		      1
-	      Points		      [25, 0; 0, -45]
-	      DstBlock		      "Logical\nOperator3"
-	      DstPort		      2
-	    }
-	    Line {
-	      ZOrder		      3
-	      SrcBlock		      "Reset"
-	      SrcPort		      1
-	      DstBlock		      "Logical\nOperator4"
-	      DstPort		      1
-	    }
-	    Line {
-	      ZOrder		      4
-	      SrcBlock		      "Set"
-	      SrcPort		      1
-	      DstBlock		      "OR1"
-	      DstPort		      2
-	    }
-	    Line {
-	      ZOrder		      5
-	      SrcBlock		      "OR1"
-	      SrcPort		      1
-	      DstBlock		      "Logical\nOperator3"
+	      Points		      [0, 90]
+	      DstBlock		      "Switch1"
 	      DstPort		      1
 	    }
 	    Line {
 	      ZOrder		      6
-	      SrcBlock		      "Logical\nOperator3"
+	      Labels		      [0, 0]
+	      SrcBlock		      "Ecarts"
 	      SrcPort		      1
-	      Points		      [9, 0]
-	      Branch {
-		ZOrder			7
-		DstBlock		"Out"
-		DstPort			1
-	      }
-	      Branch {
-		ZOrder			8
-		Points			[0, -65]
-		DstBlock		"Unit Delay1"
-		DstPort			1
-	      }
+	      DstBlock		      "Correcteurs"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      46
+	      SrcBlock		      "Correcteurs"
+	      SrcPort		      2
+	      Points		      [26, 0; 0, 70]
+	      DstBlock		      "Switch1"
+	      DstPort		      3
+	    }
+	    Line {
+	      ZOrder		      153
+	      SrcBlock		      "Cg"
+	      SrcPort		      1
+	      DstBlock		      "Ecarts"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      154
+	      SrcBlock		      "Cd"
+	      SrcPort		      1
+	      DstBlock		      "Ecarts"
+	      DstPort		      2
 	    }
 	  }
 	}
 	Block {
 	  BlockType		  SubSystem
-	  Name			  "Ligne Noire"
-	  SID			  "549"
-	  Ports			  [2, 1]
-	  Position		  [400, 405, 440, 465]
-	  ZOrder		  26
+	  Name			  "obst_ctrl"
+	  SID			  "587"
+	  Ports			  [3, 1]
+	  Position		  [230, 295, 325, 355]
+	  ZOrder		  37
 	  RequestExecContextInheritance	off
 	  Variant		  off
-	  Port {
-	    PortNumber		    1
-	  }
 	  System {
-	    Name		    "Ligne Noire"
+	    Name		    "obst_ctrl"
 	    Location		    [0, 28, 1920, 1046]
 	    Open		    off
 	    PortBlocksUseCompactNotation off
@@ -2774,696 +2799,880 @@ Model {
 	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "175"
+	    ZoomFactor		    "125"
 	    Block {
 	      BlockType		      Inport
-	      Name		      "Set"
-	      SID		      "550"
-	      Position		      [25, 88, 55, 102]
-	      ZOrder		      23
+	      Name		      "Cd"
+	      SID		      "594"
+	      Position		      [-50, 183, -20, 197]
+	      ZOrder		      39
 	      IconDisplay	      "Port number"
 	    }
 	    Block {
 	      BlockType		      Inport
-	      Name		      "Reset"
-	      SID		      "551"
-	      Position		      [25, 143, 55, 157]
-	      ZOrder		      24
+	      Name		      "Jean Michel"
+	      SID		      "589"
+	      Position		      [-50, 88, -20, 102]
+	      ZOrder		      36
 	      Port		      "2"
 	      IconDisplay	      "Port number"
 	    }
 	    Block {
+	      BlockType		      Inport
+	      Name		      "Jean René"
+	      SID		      "590"
+	      Position		      [280, 478, 310, 492]
+	      ZOrder		      37
+	      BlockMirror	      on
+	      NamePlacement	      "alternate"
+	      Port		      "3"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Constant
+	      Name		      "Jean Marc"
+	      SID		      "514"
+	      Position		      [-50, 220, -20, 250]
+	      ZOrder		      11
+	      Value		      "30"
+	      OutDataTypeStr	      "single"
+	    }
+	    Block {
+	      BlockType		      Constant
+	      Name		      "Jean Paul"
+	      SID		      "510"
+	      Position		      [-50, 125, -20, 155]
+	      ZOrder		      7
+	      Value		      "10"
+	      OutDataTypeStr	      "uint32"
+	    }
+	    Block {
+	      BlockType		      Constant
+	      Name		      "Jean Yves"
+	      SID		      "568"
+	      Position		      [-50, 285, -20, 315]
+	      ZOrder		      31
+	      Value		      "70"
+	      OutDataTypeStr	      "single"
+	    }
+	    Block {
+	      BlockType		      SubSystem
+	      Name		      "Ligne Blanche"
+	      SID		      "559"
+	      Ports		      [2, 1]
+	      Position		      [675, 275, 715, 335]
+	      ZOrder		      29
+	      RequestExecContextInheritance off
+	      Variant		      off
+	      Port {
+		PortNumber		1
+	      }
+	      System {
+		Name			"Ligne Blanche"
+		Location		[0, 28, 1920, 1046]
+		Open			off
+		PortBlocksUseCompactNotation off
+		ModelBrowserVisibility	off
+		ModelBrowserWidth	200
+		ScreenColor		"white"
+		PaperOrientation	"landscape"
+		PaperPositionMode	"auto"
+		PaperType		"usletter"
+		PaperUnits		"inches"
+		TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+		TiledPageScale		1
+		ShowPageBoundaries	off
+		ZoomFactor		"175"
+		Block {
+		  BlockType		  Inport
+		  Name			  "Set"
+		  SID			  "560"
+		  Position		  [25, 88, 55, 102]
+		  ZOrder		  23
+		  IconDisplay		  "Port number"
+		}
+		Block {
+		  BlockType		  Inport
+		  Name			  "Reset"
+		  SID			  "561"
+		  Position		  [25, 143, 55, 157]
+		  ZOrder		  24
+		  Port			  "2"
+		  IconDisplay		  "Port number"
+		}
+		Block {
+		  BlockType		  Logic
+		  Name			  "Logical\nOperator3"
+		  SID			  "562"
+		  Ports			  [2, 1]
+		  Position		  [160, 82, 190, 113]
+		  ZOrder		  20
+		  AllPortsSameDT	  off
+		  OutDataTypeStr	  "boolean"
+		}
+		Block {
+		  BlockType		  Logic
+		  Name			  "Logical\nOperator4"
+		  SID			  "563"
+		  Ports			  [1, 1]
+		  Position		  [75, 134, 105, 166]
+		  ZOrder		  22
+		  Operator		  "NOT"
+		  AllPortsSameDT	  off
+		  OutDataTypeStr	  "boolean"
+		}
+		Block {
+		  BlockType		  Logic
+		  Name			  "OR1"
+		  SID			  "564"
+		  Ports			  [2, 1]
+		  Position		  [70, 74, 100, 106]
+		  ZOrder		  19
+		  Operator		  "OR"
+		  IconShape		  "distinctive"
+		  AllPortsSameDT	  off
+		  OutDataTypeStr	  "boolean"
+		}
+		Block {
+		  BlockType		  UnitDelay
+		  Name			  "Unit Delay1"
+		  SID			  "565"
+		  Position		  [110, 18, 150, 52]
+		  ZOrder		  21
+		  BlockMirror		  on
+		  NamePlacement		  "alternate"
+		  InputProcessing	  "Elements as channels (sample based)"
+		  SampleTime		  "-1"
+		}
+		Block {
+		  BlockType		  Outport
+		  Name			  "Out"
+		  SID			  "566"
+		  Position		  [220, 93, 250, 107]
+		  ZOrder		  25
+		  IconDisplay		  "Port number"
+		}
+		Line {
+		  ZOrder		  1
+		  SrcBlock		  "Unit Delay1"
+		  SrcPort		  1
+		  Points		  [-46, 0]
+		  DstBlock		  "OR1"
+		  DstPort		  1
+		}
+		Line {
+		  ZOrder		  2
+		  SrcBlock		  "Logical\nOperator4"
+		  SrcPort		  1
+		  Points		  [25, 0; 0, -45]
+		  DstBlock		  "Logical\nOperator3"
+		  DstPort		  2
+		}
+		Line {
+		  ZOrder		  3
+		  SrcBlock		  "Reset"
+		  SrcPort		  1
+		  DstBlock		  "Logical\nOperator4"
+		  DstPort		  1
+		}
+		Line {
+		  ZOrder		  4
+		  SrcBlock		  "Set"
+		  SrcPort		  1
+		  DstBlock		  "OR1"
+		  DstPort		  2
+		}
+		Line {
+		  ZOrder		  5
+		  SrcBlock		  "OR1"
+		  SrcPort		  1
+		  DstBlock		  "Logical\nOperator3"
+		  DstPort		  1
+		}
+		Line {
+		  ZOrder		  6
+		  SrcBlock		  "Logical\nOperator3"
+		  SrcPort		  1
+		  Points		  [9, 0]
+		  Branch {
+		    ZOrder		    7
+		    DstBlock		    "Out"
+		    DstPort		    1
+		  }
+		  Branch {
+		    ZOrder		    8
+		    Points		    [0, -65]
+		    DstBlock		    "Unit Delay1"
+		    DstPort		    1
+		  }
+		}
+	      }
+	    }
+	    Block {
+	      BlockType		      SubSystem
+	      Name		      "Ligne Noire"
+	      SID		      "549"
+	      Ports		      [2, 1]
+	      Position		      [515, 155, 555, 215]
+	      ZOrder		      26
+	      RequestExecContextInheritance off
+	      Variant		      off
+	      Port {
+		PortNumber		1
+	      }
+	      System {
+		Name			"Ligne Noire"
+		Location		[0, 28, 1920, 1046]
+		Open			off
+		PortBlocksUseCompactNotation off
+		ModelBrowserVisibility	off
+		ModelBrowserWidth	200
+		ScreenColor		"white"
+		PaperOrientation	"landscape"
+		PaperPositionMode	"auto"
+		PaperType		"usletter"
+		PaperUnits		"inches"
+		TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+		TiledPageScale		1
+		ShowPageBoundaries	off
+		ZoomFactor		"175"
+		Block {
+		  BlockType		  Inport
+		  Name			  "Set"
+		  SID			  "550"
+		  Position		  [25, 88, 55, 102]
+		  ZOrder		  23
+		  IconDisplay		  "Port number"
+		}
+		Block {
+		  BlockType		  Inport
+		  Name			  "Reset"
+		  SID			  "551"
+		  Position		  [25, 143, 55, 157]
+		  ZOrder		  24
+		  Port			  "2"
+		  IconDisplay		  "Port number"
+		}
+		Block {
+		  BlockType		  Logic
+		  Name			  "Logical\nOperator3"
+		  SID			  "552"
+		  Ports			  [2, 1]
+		  Position		  [160, 82, 190, 113]
+		  ZOrder		  20
+		  AllPortsSameDT	  off
+		  OutDataTypeStr	  "boolean"
+		}
+		Block {
+		  BlockType		  Logic
+		  Name			  "Logical\nOperator4"
+		  SID			  "553"
+		  Ports			  [1, 1]
+		  Position		  [75, 134, 105, 166]
+		  ZOrder		  22
+		  Operator		  "NOT"
+		  AllPortsSameDT	  off
+		  OutDataTypeStr	  "boolean"
+		}
+		Block {
+		  BlockType		  Logic
+		  Name			  "OR1"
+		  SID			  "554"
+		  Ports			  [2, 1]
+		  Position		  [70, 74, 100, 106]
+		  ZOrder		  19
+		  Operator		  "OR"
+		  IconShape		  "distinctive"
+		  AllPortsSameDT	  off
+		  OutDataTypeStr	  "boolean"
+		}
+		Block {
+		  BlockType		  UnitDelay
+		  Name			  "Unit Delay1"
+		  SID			  "555"
+		  Position		  [110, 18, 150, 52]
+		  ZOrder		  21
+		  BlockMirror		  on
+		  NamePlacement		  "alternate"
+		  InputProcessing	  "Elements as channels (sample based)"
+		  SampleTime		  "-1"
+		}
+		Block {
+		  BlockType		  Outport
+		  Name			  "Out"
+		  SID			  "556"
+		  Position		  [220, 93, 250, 107]
+		  ZOrder		  25
+		  IconDisplay		  "Port number"
+		}
+		Line {
+		  ZOrder		  1
+		  SrcBlock		  "Unit Delay1"
+		  SrcPort		  1
+		  Points		  [-46, 0]
+		  DstBlock		  "OR1"
+		  DstPort		  1
+		}
+		Line {
+		  ZOrder		  2
+		  SrcBlock		  "Logical\nOperator4"
+		  SrcPort		  1
+		  Points		  [25, 0; 0, -45]
+		  DstBlock		  "Logical\nOperator3"
+		  DstPort		  2
+		}
+		Line {
+		  ZOrder		  3
+		  SrcBlock		  "Reset"
+		  SrcPort		  1
+		  DstBlock		  "Logical\nOperator4"
+		  DstPort		  1
+		}
+		Line {
+		  ZOrder		  4
+		  SrcBlock		  "Set"
+		  SrcPort		  1
+		  DstBlock		  "OR1"
+		  DstPort		  2
+		}
+		Line {
+		  ZOrder		  5
+		  SrcBlock		  "OR1"
+		  SrcPort		  1
+		  DstBlock		  "Logical\nOperator3"
+		  DstPort		  1
+		}
+		Line {
+		  ZOrder		  6
+		  SrcBlock		  "Logical\nOperator3"
+		  SrcPort		  1
+		  Points		  [9, 0]
+		  Branch {
+		    ZOrder		    7
+		    DstBlock		    "Out"
+		    DstPort		    1
+		  }
+		  Branch {
+		    ZOrder		    8
+		    Points		    [0, -65]
+		    DstBlock		    "Unit Delay1"
+		    DstPort		    1
+		  }
+		}
+	      }
+	    }
+	    Block {
+	      BlockType		      Logic
+	      Name		      "Logical\nOperator1"
+	      SID		      "578"
+	      Ports		      [2, 1]
+	      Position		      [210, 460, 240, 495]
+	      ZOrder		      34
+	      BlockMirror	      on
+	      ForegroundColor	      "red"
+	      NamePlacement	      "alternate"
+	      Operator		      "OR"
+	      AllPortsSameDT	      off
+	      OutDataTypeStr	      "boolean"
+	    }
+	    Block {
+	      BlockType		      Logic
+	      Name		      "Logical\nOperator2"
+	      SID		      "519"
+	      Ports		      [2, 1]
+	      Position		      [430, 112, 460, 143]
+	      ZOrder		      16
+	      AllPortsSameDT	      off
+	      OutDataTypeStr	      "boolean"
+	    }
+	    Block {
 	      BlockType		      Logic
 	      Name		      "Logical\nOperator3"
-	      SID		      "552"
+	      SID		      "558"
 	      Ports		      [2, 1]
-	      Position		      [160, 82, 190, 113]
-	      ZOrder		      20
+	      Position		      [620, 177, 650, 208]
+	      ZOrder		      28
 	      AllPortsSameDT	      off
 	      OutDataTypeStr	      "boolean"
 	    }
 	    Block {
 	      BlockType		      Logic
 	      Name		      "Logical\nOperator4"
-	      SID		      "553"
-	      Ports		      [1, 1]
-	      Position		      [75, 134, 105, 166]
-	      ZOrder		      22
-	      Operator		      "NOT"
+	      SID		      "567"
+	      Ports		      [2, 1]
+	      Position		      [770, 297, 800, 328]
+	      ZOrder		      30
 	      AllPortsSameDT	      off
 	      OutDataTypeStr	      "boolean"
+	      Port {
+		PortNumber		1
+	      }
 	    }
 	    Block {
-	      BlockType		      Logic
-	      Name		      "OR1"
-	      SID		      "554"
+	      BlockType		      SubSystem
+	      Name		      "Obstacle"
+	      SID		      "543"
 	      Ports		      [2, 1]
-	      Position		      [70, 74, 100, 106]
-	      ZOrder		      19
-	      Operator		      "OR"
-	      IconShape		      "distinctive"
-	      AllPortsSameDT	      off
+	      Position		      [275, 90, 315, 150]
+	      ZOrder		      23
+	      RequestExecContextInheritance off
+	      Variant		      off
+	      Port {
+		PortNumber		1
+	      }
+	      System {
+		Name			"Obstacle"
+		Location		[0, 28, 1920, 1046]
+		Open			off
+		PortBlocksUseCompactNotation off
+		ModelBrowserVisibility	off
+		ModelBrowserWidth	200
+		ScreenColor		"white"
+		PaperOrientation	"landscape"
+		PaperPositionMode	"auto"
+		PaperType		"usletter"
+		PaperUnits		"inches"
+		TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+		TiledPageScale		1
+		ShowPageBoundaries	off
+		ZoomFactor		"175"
+		Block {
+		  BlockType		  Inport
+		  Name			  "Set"
+		  SID			  "544"
+		  Position		  [25, 88, 55, 102]
+		  ZOrder		  23
+		  IconDisplay		  "Port number"
+		}
+		Block {
+		  BlockType		  Inport
+		  Name			  "Reset"
+		  SID			  "545"
+		  Position		  [25, 143, 55, 157]
+		  ZOrder		  24
+		  Port			  "2"
+		  IconDisplay		  "Port number"
+		}
+		Block {
+		  BlockType		  Logic
+		  Name			  "Logical\nOperator3"
+		  SID			  "540"
+		  Ports			  [2, 1]
+		  Position		  [160, 82, 190, 113]
+		  ZOrder		  20
+		  AllPortsSameDT	  off
+		  OutDataTypeStr	  "boolean"
+		}
+		Block {
+		  BlockType		  Logic
+		  Name			  "Logical\nOperator4"
+		  SID			  "542"
+		  Ports			  [1, 1]
+		  Position		  [75, 134, 105, 166]
+		  ZOrder		  22
+		  Operator		  "NOT"
+		  AllPortsSameDT	  off
+		  OutDataTypeStr	  "boolean"
+		}
+		Block {
+		  BlockType		  Logic
+		  Name			  "OR1"
+		  SID			  "539"
+		  Ports			  [2, 1]
+		  Position		  [70, 74, 100, 106]
+		  ZOrder		  19
+		  Operator		  "OR"
+		  IconShape		  "distinctive"
+		  AllPortsSameDT	  off
+		  OutDataTypeStr	  "boolean"
+		}
+		Block {
+		  BlockType		  UnitDelay
+		  Name			  "Unit Delay1"
+		  SID			  "541"
+		  Position		  [110, 18, 150, 52]
+		  ZOrder		  21
+		  BlockMirror		  on
+		  NamePlacement		  "alternate"
+		  InputProcessing	  "Elements as channels (sample based)"
+		  SampleTime		  "-1"
+		}
+		Block {
+		  BlockType		  Outport
+		  Name			  "Out"
+		  SID			  "546"
+		  Position		  [220, 93, 250, 107]
+		  ZOrder		  25
+		  IconDisplay		  "Port number"
+		}
+		Line {
+		  ZOrder		  82
+		  SrcBlock		  "Unit Delay1"
+		  SrcPort		  1
+		  Points		  [-46, 0]
+		  DstBlock		  "OR1"
+		  DstPort		  1
+		}
+		Line {
+		  ZOrder		  84
+		  SrcBlock		  "Logical\nOperator4"
+		  SrcPort		  1
+		  Points		  [25, 0; 0, -45]
+		  DstBlock		  "Logical\nOperator3"
+		  DstPort		  2
+		}
+		Line {
+		  ZOrder		  91
+		  SrcBlock		  "Reset"
+		  SrcPort		  1
+		  DstBlock		  "Logical\nOperator4"
+		  DstPort		  1
+		}
+		Line {
+		  ZOrder		  90
+		  SrcBlock		  "Set"
+		  SrcPort		  1
+		  DstBlock		  "OR1"
+		  DstPort		  2
+		}
+		Line {
+		  ZOrder		  81
+		  SrcBlock		  "OR1"
+		  SrcPort		  1
+		  DstBlock		  "Logical\nOperator3"
+		  DstPort		  1
+		}
+		Line {
+		  ZOrder		  83
+		  SrcBlock		  "Logical\nOperator3"
+		  SrcPort		  1
+		  Points		  [9, 0]
+		  Branch {
+		    ZOrder		    93
+		    DstBlock		    "Out"
+		    DstPort		    1
+		  }
+		  Branch {
+		    ZOrder		    92
+		    Points		    [0, -65]
+		    DstBlock		    "Unit Delay1"
+		    DstPort		    1
+		  }
+		}
+	      }
+	    }
+	    Block {
+	      BlockType		      RelationalOperator
+	      Name		      "Relational\nOperator"
+	      SID		      "509"
+	      Ports		      [2, 1]
+	      Position		      [95, 87, 125, 118]
+	      ZOrder		      6
+	      Operator		      "<="
+	      InputSameDT	      off
 	      OutDataTypeStr	      "boolean"
+	      RndMeth		      "Simplest"
+	    }
+	    Block {
+	      BlockType		      RelationalOperator
+	      Name		      "Relational\nOperator1"
+	      SID		      "513"
+	      Ports		      [2, 1]
+	      Position		      [95, 182, 125, 213]
+	      ZOrder		      10
+	      Operator		      "<="
+	      InputSameDT	      off
+	      OutDataTypeStr	      "boolean"
+	      RndMeth		      "Simplest"
+	    }
+	    Block {
+	      BlockType		      RelationalOperator
+	      Name		      "Relational\nOperator2"
+	      SID		      "557"
+	      Ports		      [2, 1]
+	      Position		      [95, 277, 125, 308]
+	      ZOrder		      27
+	      InputSameDT	      off
+	      OutDataTypeStr	      "boolean"
+	      RndMeth		      "Simplest"
 	    }
 	    Block {
 	      BlockType		      UnitDelay
-	      Name		      "Unit Delay1"
-	      SID		      "555"
-	      Position		      [110, 18, 150, 52]
-	      ZOrder		      21
+	      Name		      "Unit Delay"
+	      SID		      "548"
+	      Position		      [365, 388, 400, 422]
+	      ZOrder		      25
 	      BlockMirror	      on
-	      NamePlacement	      "alternate"
+	      ForegroundColor	      "red"
 	      InputProcessing	      "Elements as channels (sample based)"
 	      SampleTime	      "-1"
 	    }
 	    Block {
 	      BlockType		      Outport
-	      Name		      "Out"
-	      SID		      "556"
-	      Position		      [220, 93, 250, 107]
-	      ZOrder		      25
+	      Name		      "Obst"
+	      SID		      "591"
+	      Position		      [770, 63, 800, 77]
+	      ZOrder		      38
 	      IconDisplay	      "Port number"
 	    }
 	    Line {
-	      ZOrder		      1
-	      SrcBlock		      "Unit Delay1"
+	      ZOrder		      198
+	      SrcBlock		      "Logical\nOperator1"
 	      SrcPort		      1
-	      Points		      [-46, 0]
-	      DstBlock		      "OR1"
-	      DstPort		      1
+	      Points		      [-63, 0; 0, -126]
+	      Branch {
+		ZOrder			202
+		Points			[486, 0; 0, -34]
+		DstBlock		"Ligne Blanche"
+		DstPort			2
+	      }
+	      Branch {
+		ZOrder			201
+		Points			[0, -109]
+		Branch {
+		  ZOrder		  200
+		  Points		  [264, 0; 0, -45]
+		  DstBlock		  "Ligne Noire"
+		  DstPort		  2
+		}
+		Branch {
+		  ZOrder		  199
+		  Points		  [0, -110]
+		  DstBlock		  "Obstacle"
+		  DstPort		  2
+		}
+	      }
 	    }
 	    Line {
-	      ZOrder		      2
-	      SrcBlock		      "Logical\nOperator4"
+	      ZOrder		      227
+	      SrcBlock		      "Jean René"
 	      SrcPort		      1
-	      Points		      [25, 0; 0, -45]
-	      DstBlock		      "Logical\nOperator3"
+	      DstBlock		      "Logical\nOperator1"
 	      DstPort		      2
 	    }
 	    Line {
-	      ZOrder		      3
-	      SrcBlock		      "Reset"
+	      ZOrder		      196
+	      SrcBlock		      "Logical\nOperator4"
 	      SrcPort		      1
+	      Points		      [18, 0; 0, 90]
+	      DstBlock		      "Unit Delay"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      197
+	      SrcBlock		      "Unit Delay"
+	      SrcPort		      1
+	      Points		      [-102, 0; 0, 65]
+	      DstBlock		      "Logical\nOperator1"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      127
+	      SrcBlock		      "Jean Yves"
+	      SrcPort		      1
+	      DstBlock		      "Relational\nOperator2"
+	      DstPort		      2
+	    }
+	    Line {
+	      ZOrder		      117
+	      SrcBlock		      "Ligne Blanche"
+	      SrcPort		      1
+	      Points		      [0, 0]
 	      DstBlock		      "Logical\nOperator4"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      4
-	      SrcBlock		      "Set"
+	      ZOrder		      106
+	      SrcBlock		      "Logical\nOperator2"
 	      SrcPort		      1
-	      DstBlock		      "OR1"
-	      DstPort		      2
-	    }
-	    Line {
-	      ZOrder		      5
-	      SrcBlock		      "OR1"
-	      SrcPort		      1
-	      DstBlock		      "Logical\nOperator3"
+	      Points		      [6, 0; 0, 40]
+	      DstBlock		      "Ligne Noire"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      6
-	      SrcBlock		      "Logical\nOperator3"
+	      ZOrder		      93
+	      SrcBlock		      "Obstacle"
 	      SrcPort		      1
-	      Points		      [9, 0]
+	      Points		      [45, 0]
 	      Branch {
-		ZOrder			7
-		DstBlock		"Out"
+		ZOrder			228
+		Points			[0, -50]
+		DstBlock		"Obst"
 		DstPort			1
 	      }
 	      Branch {
-		ZOrder			8
-		Points			[0, -65]
-		DstBlock		"Unit Delay1"
+		ZOrder			128
+		DstBlock		"Logical\nOperator2"
 		DstPort			1
 	      }
 	    }
-	  }
-	}
-	Block {
-	  BlockType		  Logic
-	  Name			  "Logical\nOperator1"
-	  SID			  "578"
-	  Ports			  [2, 1]
-	  Position		  [65, 675, 95, 710]
-	  ZOrder		  34
-	  BlockMirror		  on
-	  ForegroundColor	  "red"
-	  NamePlacement		  "alternate"
-	  Operator		  "OR"
-	  AllPortsSameDT	  off
-	  OutDataTypeStr	  "boolean"
-	}
-	Block {
-	  BlockType		  Logic
-	  Name			  "Logical\nOperator2"
-	  SID			  "519"
-	  Ports			  [2, 1]
-	  Position		  [330, 402, 360, 433]
-	  ZOrder		  16
-	  AllPortsSameDT	  off
-	  OutDataTypeStr	  "boolean"
-	}
-	Block {
-	  BlockType		  Logic
-	  Name			  "Logical\nOperator3"
-	  SID			  "558"
-	  Ports			  [2, 1]
-	  Position		  [490, 487, 520, 518]
-	  ZOrder		  28
-	  AllPortsSameDT	  off
-	  OutDataTypeStr	  "boolean"
-	}
-	Block {
-	  BlockType		  Logic
-	  Name			  "Logical\nOperator4"
-	  SID			  "567"
-	  Ports			  [2, 1]
-	  Position		  [640, 552, 670, 583]
-	  ZOrder		  30
-	  AllPortsSameDT	  off
-	  OutDataTypeStr	  "boolean"
-	  Port {
-	    PortNumber		    1
-	  }
-	}
-	Block {
-	  BlockType		  SubSystem
-	  Name			  "Obstacle"
-	  SID			  "543"
-	  Ports			  [2, 1]
-	  Position		  [180, 320, 220, 380]
-	  ZOrder		  23
-	  RequestExecContextInheritance	off
-	  Variant		  off
-	  Port {
-	    PortNumber		    1
-	  }
-	  System {
-	    Name		    "Obstacle"
-	    Location		    [0, 28, 1920, 1046]
-	    Open		    off
-	    PortBlocksUseCompactNotation off
-	    ModelBrowserVisibility  off
-	    ModelBrowserWidth	    200
-	    ScreenColor		    "white"
-	    PaperOrientation	    "landscape"
-	    PaperPositionMode	    "auto"
-	    PaperType		    "usletter"
-	    PaperUnits		    "inches"
-	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
-	    TiledPageScale	    1
-	    ShowPageBoundaries	    off
-	    ZoomFactor		    "175"
-	    Block {
-	      BlockType		      Inport
-	      Name		      "Set"
-	      SID		      "544"
-	      Position		      [25, 88, 55, 102]
-	      ZOrder		      23
-	      IconDisplay	      "Port number"
+	    Line {
+	      ZOrder		      112
+	      SrcBlock		      "Relational\nOperator2"
+	      SrcPort		      1
+	      Points		      [457, 0; 0, -95]
+	      DstBlock		      "Logical\nOperator3"
+	      DstPort		      2
 	    }
-	    Block {
-	      BlockType		      Inport
-	      Name		      "Reset"
-	      SID		      "545"
-	      Position		      [25, 143, 55, 157]
-	      ZOrder		      24
-	      Port		      "2"
-	      IconDisplay	      "Port number"
+	    Line {
+	      ZOrder		      232
+	      SrcBlock		      "Cd"
+	      SrcPort		      1
+	      Points		      [22, 0]
+	      Branch {
+		ZOrder			233
+		DstBlock		"Relational\nOperator1"
+		DstPort			1
+	      }
+	      Branch {
+		ZOrder			138
+		Points			[0, 95]
+		DstBlock		"Relational\nOperator2"
+		DstPort			1
+	      }
 	    }
-	    Block {
-	      BlockType		      Logic
-	      Name		      "Logical\nOperator3"
-	      SID		      "540"
-	      Ports		      [2, 1]
-	      Position		      [160, 82, 190, 113]
+	    Line {
 	      ZOrder		      20
-	      AllPortsSameDT	      off
-	      OutDataTypeStr	      "boolean"
-	    }
-	    Block {
-	      BlockType		      Logic
-	      Name		      "Logical\nOperator4"
-	      SID		      "542"
-	      Ports		      [1, 1]
-	      Position		      [75, 134, 105, 166]
-	      ZOrder		      22
-	      Operator		      "NOT"
-	      AllPortsSameDT	      off
-	      OutDataTypeStr	      "boolean"
-	    }
-	    Block {
-	      BlockType		      Logic
-	      Name		      "OR1"
-	      SID		      "539"
-	      Ports		      [2, 1]
-	      Position		      [70, 74, 100, 106]
-	      ZOrder		      19
-	      Operator		      "OR"
-	      IconShape		      "distinctive"
-	      AllPortsSameDT	      off
-	      OutDataTypeStr	      "boolean"
-	    }
-	    Block {
-	      BlockType		      UnitDelay
-	      Name		      "Unit Delay1"
-	      SID		      "541"
-	      Position		      [110, 18, 150, 52]
-	      ZOrder		      21
-	      BlockMirror	      on
-	      NamePlacement	      "alternate"
-	      InputProcessing	      "Elements as channels (sample based)"
-	      SampleTime	      "-1"
-	    }
-	    Block {
-	      BlockType		      Outport
-	      Name		      "Out"
-	      SID		      "546"
-	      Position		      [220, 93, 250, 107]
-	      ZOrder		      25
-	      IconDisplay	      "Port number"
-	    }
-	    Line {
-	      ZOrder		      82
-	      SrcBlock		      "Unit Delay1"
+	      SrcBlock		      "Jean Paul"
 	      SrcPort		      1
-	      Points		      [-46, 0]
-	      DstBlock		      "OR1"
-	      DstPort		      1
-	    }
-	    Line {
-	      ZOrder		      84
-	      SrcBlock		      "Logical\nOperator4"
-	      SrcPort		      1
-	      Points		      [25, 0; 0, -45]
-	      DstBlock		      "Logical\nOperator3"
+	      Points		      [92, 0; 0, -30]
+	      DstBlock		      "Relational\nOperator"
 	      DstPort		      2
+	    }
+	    Line {
+	      ZOrder		      38
+	      SrcBlock		      "Relational\nOperator1"
+	      SrcPort		      1
+	      Points		      [136, 0]
+	      Branch {
+		ZOrder			235
+		Points			[0, 61; 481, 0; 0, 59]
+		DstBlock		"Logical\nOperator4"
+		DstPort			2
+	      }
+	      Branch {
+		ZOrder			134
+		Points			[75, 0; 0, -65]
+		DstBlock		"Logical\nOperator2"
+		DstPort			2
+	      }
 	    }
 	    Line {
 	      ZOrder		      91
-	      SrcBlock		      "Reset"
+	      SrcBlock		      "Relational\nOperator"
 	      SrcPort		      1
-	      DstBlock		      "Logical\nOperator4"
+	      DstBlock		      "Obstacle"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      90
-	      SrcBlock		      "Set"
+	      ZOrder		      114
+	      SrcBlock		      "Logical\nOperator3"
 	      SrcPort		      1
-	      DstBlock		      "OR1"
-	      DstPort		      2
+	      Points		      [5, 0]
+	      DstBlock		      "Ligne Blanche"
+	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      81
-	      SrcBlock		      "OR1"
+	      ZOrder		      226
+	      SrcBlock		      "Jean Michel"
+	      SrcPort		      1
+	      DstBlock		      "Relational\nOperator"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      113
+	      SrcBlock		      "Ligne Noire"
 	      SrcPort		      1
 	      DstBlock		      "Logical\nOperator3"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      83
-	      SrcBlock		      "Logical\nOperator3"
+	      ZOrder		      28
+	      SrcBlock		      "Jean Marc"
 	      SrcPort		      1
-	      Points		      [9, 0]
-	      Branch {
-		ZOrder			93
-		DstBlock		"Out"
-		DstPort			1
-	      }
-	      Branch {
-		ZOrder			92
-		Points			[0, -65]
-		DstBlock		"Unit Delay1"
-		DstPort			1
-	      }
+	      Points		      [8, 0; 0, -30]
+	      DstBlock		      "Relational\nOperator1"
+	      DstPort		      2
 	    }
 	  }
-	}
-	Block {
-	  BlockType		  RelationalOperator
-	  Name			  "Relational\nOperator"
-	  SID			  "509"
-	  Ports			  [2, 1]
-	  Position		  [105, 317, 135, 348]
-	  ZOrder		  6
-	  Operator		  "<="
-	  InputSameDT		  off
-	  OutDataTypeStr	  "boolean"
-	  RndMeth		  "Simplest"
-	}
-	Block {
-	  BlockType		  RelationalOperator
-	  Name			  "Relational\nOperator1"
-	  SID			  "513"
-	  Ports			  [2, 1]
-	  Position		  [105, 392, 135, 423]
-	  ZOrder		  10
-	  Operator		  "<="
-	  InputSameDT		  off
-	  OutDataTypeStr	  "boolean"
-	  RndMeth		  "Simplest"
-	}
-	Block {
-	  BlockType		  RelationalOperator
-	  Name			  "Relational\nOperator2"
-	  SID			  "557"
-	  Ports			  [2, 1]
-	  Position		  [105, 492, 135, 523]
-	  ZOrder		  27
-	  InputSameDT		  off
-	  OutDataTypeStr	  "boolean"
-	  RndMeth		  "Simplest"
-	}
-	Block {
-	  BlockType		  Switch
-	  Name			  "Switch"
-	  SID			  "504"
-	  Position		  [480, 225, 530, 265]
-	  ZOrder		  1
-	  Criteria		  "u2 > Threshold"
-	  InputSameDT		  off
-	  SaturateOnIntegerOverflow off
-	}
-	Block {
-	  BlockType		  Switch
-	  Name			  "Switch1"
-	  SID			  "505"
-	  Position		  [480, 290, 530, 330]
-	  ZOrder		  2
-	  Criteria		  "u2 > Threshold"
-	  InputSameDT		  off
-	  SaturateOnIntegerOverflow off
-	}
-	Block {
-	  BlockType		  UnitDelay
-	  Name			  "Unit Delay"
-	  SID			  "548"
-	  Position		  [270, 603, 305, 637]
-	  ZOrder		  25
-	  BlockMirror		  on
-	  ForegroundColor	  "red"
-	  InputProcessing	  "Elements as channels (sample based)"
-	  SampleTime		  "-1"
-	}
-	Block {
-	  BlockType		  Constant
-	  Name			  "Vitesse Demi-Tour"
-	  SID			  "506"
-	  Position		  [300, 290, 330, 320]
-	  ZOrder		  3
-	  Value			  "0.2"
-	  OutDataTypeStr	  "single"
 	}
 	Block {
 	  BlockType		  Outport
 	  Name			  "v_d"
 	  SID			  "478"
-	  Position		  [555, 238, 585, 252]
+	  Position		  [540, 228, 570, 242]
 	  ZOrder		  -5
+	  NamePlacement		  "alternate"
 	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Outport
 	  Name			  "v_g"
 	  SID			  "479"
-	  Position		  [555, 303, 585, 317]
+	  Position		  [540, 258, 570, 272]
 	  ZOrder		  -6
 	  Port			  "2"
 	  IconDisplay		  "Port number"
 	}
 	Line {
-	  ZOrder		  3
-	  SrcBlock		  "Ecarts"
-	  SrcPort		  2
-	  DstBlock		  "Correcteurs"
-	  DstPort		  2
-	}
-	Line {
-	  ZOrder		  4
-	  SrcBlock		  "Cg"
-	  SrcPort		  1
-	  DstBlock		  "Ecarts"
-	  DstPort		  1
-	}
-	Line {
 	  ZOrder		  5
 	  SrcBlock		  "Cd"
 	  SrcPort		  1
-	  Points		  [18, 0]
+	  Points		  [82, 0]
 	  Branch {
-	    ZOrder		    136
-	    Points		    [0, 145; 1, 0]
-	    Branch {
-	      ZOrder		      138
-	      Points		      [0, 100]
-	      DstBlock		      "Relational\nOperator2"
-	      DstPort		      1
-	    }
-	    Branch {
-	      ZOrder		      137
-	      DstBlock		      "Relational\nOperator1"
-	      DstPort		      1
-	    }
-	  }
-	  Branch {
-	    ZOrder		    135
-	    DstBlock		    "Ecarts"
+	    ZOrder		    241
+	    DstBlock		    "line_ctrl"
 	    DstPort		    2
 	  }
+	  Branch {
+	    ZOrder		    240
+	    Points		    [0, 55]
+	    DstBlock		    "obst_ctrl"
+	    DstPort		    1
+	  }
 	}
 	Line {
-	  ZOrder		  6
-	  Labels		  [0, 0]
-	  SrcBlock		  "Ecarts"
-	  SrcPort		  1
-	  DstBlock		  "Correcteurs"
-	  DstPort		  1
-	}
-	Line {
-	  ZOrder		  7
-	  SrcBlock		  "Switch"
+	  ZOrder		  221
+	  SrcBlock		  "line_ctrl"
 	  SrcPort		  1
 	  DstBlock		  "v_d"
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  8
-	  SrcBlock		  "Switch1"
-	  SrcPort		  1
+	  ZOrder		  222
+	  SrcBlock		  "line_ctrl"
+	  SrcPort		  2
 	  DstBlock		  "v_g"
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  11
-	  SrcBlock		  "Vitesse Demi-Tour"
-	  SrcPort		  1
-	  Points		  [16, 0]
-	  Branch {
-	    ZOrder		    44
-	    Points		    [54, 0; 0, -75]
-	    DstBlock		    "Switch"
-	    DstPort		    1
-	  }
-	  Branch {
-	    ZOrder		    43
-	    Points		    [0, 20]
-	    DstBlock		    "Gain"
-	    DstPort		    1
-	  }
-	}
-	Line {
-	  ZOrder		  19
+	  ZOrder		  226
 	  SrcBlock		  "Jean Michel"
 	  SrcPort		  1
-	  DstBlock		  "Relational\nOperator"
-	  DstPort		  1
-	}
-	Line {
-	  ZOrder		  20
-	  SrcBlock		  "Jean Paul"
-	  SrcPort		  1
-	  Points		  [45, 0; 0, -25]
-	  DstBlock		  "Relational\nOperator"
+	  DstBlock		  "obst_ctrl"
 	  DstPort		  2
 	}
 	Line {
-	  ZOrder		  28
-	  SrcBlock		  "Jean Marc"
+	  ZOrder		  227
+	  SrcBlock		  "Jean René"
 	  SrcPort		  1
-	  DstBlock		  "Relational\nOperator1"
-	  DstPort		  2
-	}
-	Line {
-	  ZOrder		  38
-	  SrcBlock		  "Relational\nOperator1"
-	  SrcPort		  1
-	  Points		  [31, 0; 0, 15]
-	  Branch {
-	    ZOrder		    134
-	    DstBlock		    "Logical\nOperator2"
-	    DstPort		    2
-	  }
-	  Branch {
-	    ZOrder		    133
-	    Points		    [0, 150]
-	    DstBlock		    "Logical\nOperator4"
-	    DstPort		    2
-	  }
-	}
-	Line {
-	  ZOrder		  42
-	  SrcBlock		  "Correcteurs"
-	  SrcPort		  1
-	  Points		  [25, 0; 0, 30]
-	  DstBlock		  "Switch"
+	  DstBlock		  "obst_ctrl"
 	  DstPort		  3
 	}
 	Line {
-	  ZOrder		  45
-	  SrcBlock		  "Gain"
+	  ZOrder		  230
+	  SrcBlock		  "obst_ctrl"
 	  SrcPort		  1
-	  Points		  [18, 0; 0, -30]
-	  DstBlock		  "Switch1"
-	  DstPort		  1
-	}
-	Line {
-	  ZOrder		  46
-	  SrcBlock		  "Correcteurs"
-	  SrcPort		  2
-	  Points		  [67, 0; 0, 70]
-	  DstBlock		  "Switch1"
+	  Points		  [9, 0; 0, -55]
+	  DstBlock		  "line_ctrl"
 	  DstPort		  3
 	}
 	Line {
-	  ZOrder		  91
-	  SrcBlock		  "Relational\nOperator"
+	  ZOrder		  238
+	  SrcBlock		  "Cg"
 	  SrcPort		  1
-	  DstBlock		  "Obstacle"
+	  DstBlock		  "line_ctrl"
 	  DstPort		  1
-	}
-	Line {
-	  ZOrder		  93
-	  SrcBlock		  "Obstacle"
-	  SrcPort		  1
-	  Points		  [8, 0; 0, 54; 37, 0]
-	  Branch {
-	    ZOrder		    132
-	    Points		    [0, -26; 182, 0]
-	    Branch {
-	      ZOrder		      131
-	      Points		      [0, -133]
-	      DstBlock		      "Switch"
-	      DstPort		      2
-	    }
-	    Branch {
-	      ZOrder		      130
-	      Points		      [13, 0]
-	      DstBlock		      "Switch1"
-	      DstPort		      2
-	    }
-	  }
-	  Branch {
-	    ZOrder		    128
-	    Points		    [45, 0]
-	    DstBlock		    "Logical\nOperator2"
-	    DstPort		    1
-	  }
-	}
-	Line {
-	  ZOrder		  106
-	  SrcBlock		  "Logical\nOperator2"
-	  SrcPort		  1
-	  DstBlock		  "Ligne Noire"
-	  DstPort		  1
-	}
-	Line {
-	  ZOrder		  112
-	  SrcBlock		  "Relational\nOperator2"
-	  SrcPort		  1
-	  DstBlock		  "Logical\nOperator3"
-	  DstPort		  2
-	}
-	Line {
-	  ZOrder		  113
-	  SrcBlock		  "Ligne Noire"
-	  SrcPort		  1
-	  Points		  [36, 0; 0, 60]
-	  DstBlock		  "Logical\nOperator3"
-	  DstPort		  1
-	}
-	Line {
-	  ZOrder		  114
-	  SrcBlock		  "Logical\nOperator3"
-	  SrcPort		  1
-	  DstBlock		  "Ligne Blanche"
-	  DstPort		  1
-	}
-	Line {
-	  ZOrder		  117
-	  SrcBlock		  "Ligne Blanche"
-	  SrcPort		  1
-	  Points		  [30, 0]
-	  DstBlock		  "Logical\nOperator4"
-	  DstPort		  1
-	}
-	Line {
-	  ZOrder		  127
-	  SrcBlock		  "Jean Yves"
-	  SrcPort		  1
-	  DstBlock		  "Relational\nOperator2"
-	  DstPort		  2
-	}
-	Line {
-	  ZOrder		  196
-	  SrcBlock		  "Logical\nOperator4"
-	  SrcPort		  1
-	  Points		  [13, 0; 0, 50]
-	  DstBlock		  "Unit Delay"
-	  DstPort		  1
-	}
-	Line {
-	  ZOrder		  197
-	  SrcBlock		  "Unit Delay"
-	  SrcPort		  1
-	  Points		  [-151, 0; 0, 65]
-	  DstBlock		  "Logical\nOperator1"
-	  DstPort		  1
-	}
-	Line {
-	  ZOrder		  198
-	  SrcBlock		  "Logical\nOperator1"
-	  SrcPort		  1
-	  Points		  [-13, 0; 0, -126]
-	  Branch {
-	    ZOrder		    202
-	    Points		    [486, 0; 0, -34]
-	    DstBlock		    "Ligne Blanche"
-	    DstPort		    2
-	  }
-	  Branch {
-	    ZOrder		    201
-	    Points		    [0, -109]
-	    Branch {
-	      ZOrder		      200
-	      Points		      [178, 0; 0, -69; 157, 0; 0, 59]
-	      DstBlock		      "Ligne Noire"
-	      DstPort		      2
-	    }
-	    Branch {
-	      ZOrder		      199
-	      Points		      [0, -79; 113, 0; 0, -16]
-	      DstBlock		      "Obstacle"
-	      DstPort		      2
-	    }
-	  }
-	}
-	Line {
-	  ZOrder		  217
-	  SrcBlock		  "Jean Reset"
-	  SrcPort		  1
-	  DstBlock		  "Logical\nOperator1"
-	  DstPort		  2
 	}
       }
     }
