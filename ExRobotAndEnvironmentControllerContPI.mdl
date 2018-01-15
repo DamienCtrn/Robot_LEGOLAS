@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.323"
+    ComputedModelVersion    "1.324"
     NumModelReferences	    0
     NumTestPointedSignals   4
     TestPointedSignal {
@@ -94,10 +94,10 @@ Model {
 	$ClassName		"Simulink.EditorInfo"
 	IsActive		[1]
 	ViewObjType		"SimulinkSubsys"
-	LoadSaveID		"147"
+	LoadSaveID		"581"
 	Extents			[1882.0, 830.0]
-	ZoomFactor		[1.25]
-	Offset			[-348.24261442795455, 134.1721045489773]
+	ZoomFactor		[1.5]
+	Offset			[0.0, -99.333333333333286]
       }
       Object {
 	$PropName		"DockComponentsInfo"
@@ -129,11 +129,11 @@ Model {
   Creator		  "alex"
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
-  LastModifiedBy	  "cathrind"
+  LastModifiedBy	  "moricevi"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Mon Jan 08 16:35:11 2018"
-  RTWModifiedTimeStamp	  437330003
-  ModelVersionFormat	  "1.%<AutoIncrement:323>"
+  LastModifiedDate	  "Mon Jan 15 13:53:08 2018"
+  RTWModifiedTimeStamp	  437925179
+  ModelVersionFormat	  "1.%<AutoIncrement:324>"
   ConfigurationManager	  "none"
   SampleTimeColors	  on
   SampleTimeAnnotations	  off
@@ -1954,7 +1954,7 @@ Model {
       System {
 	Name			"controller"
 	Location		[0, 28, 1920, 1046]
-	Open			on
+	Open			off
 	PortBlocksUseCompactNotation off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -2016,7 +2016,7 @@ Model {
 	  System {
 	    Name		    "line_ctrl"
 	    Location		    [0, 28, 1920, 1046]
-	    Open		    off
+	    Open		    on
 	    PortBlocksUseCompactNotation off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -2055,6 +2055,7 @@ Model {
 	      ZOrder		      10
 	      Port		      "3"
 	      IconDisplay	      "Port number"
+	      OutDataTypeStr	      "boolean"
 	    }
 	    Block {
 	      BlockType		      SubSystem
@@ -3477,7 +3478,6 @@ Model {
 	      ZOrder		      117
 	      SrcBlock		      "Ligne Blanche"
 	      SrcPort		      1
-	      Points		      [0, 0]
 	      DstBlock		      "Logical\nOperator4"
 	      DstPort		      1
 	    }

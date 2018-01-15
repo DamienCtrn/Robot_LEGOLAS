@@ -5,7 +5,7 @@
 #include "periods.h"
 
 // GLUE CODE: include the Lustre generated header
-#include "controller.h"
+#include "line_ctrl.h"
 
 // Calibration parameters
 #define MIN_LIGHT_SENSOR 0
@@ -110,7 +110,7 @@ void calibration_auto_step(void) {
 	using the procedure provided in the generated code
 */
 void usr_init(void) {
-	controller_init();
+	line_ctrl_init();
 }
 
 /**
@@ -138,7 +138,7 @@ int speed_to_power(_real speed) {
 	Note: we directly use here the functions from
 	the "ecrobot" library (display_goto_xy, display_string etc)
 */
-void controller_O_v_d(_real V) {
+void line_ctrl_O_v_d(_real V) {
 	int v_power = speed_to_power(V);
 #ifdef DEBUG
 	display_goto_xy(0,3);
@@ -148,7 +148,7 @@ void controller_O_v_d(_real V) {
 	nxt_motor_set_speed(NXT_PORT_A, v_power, 1);
 }
 
-void controller_O_v_g(_real V) {
+void line_ctrl_O_v_g(_real V) {
 	int v_power = speed_to_power(V);
 #ifdef DEBUG
 	display_goto_xy(0,4);
@@ -175,14 +175,14 @@ TASK(UsrTask)
 	} else {
 
 		/* read and set inputs */
-		controller_I_Cg(raw_to_model(left_min, left_max, ecrobot_get_light_sensor(NXT_PORT_S1)));
-		controller_I_Cd(raw_to_model(right_min, right_max, ecrobot_get_light_sensor(NXT_PORT_S2)));
-		controller_I_Jean_Michel(ecrobot_get_sonar_sensor(NXT_PORT_S3));
+		line_ctrl_I_Cg(raw_to_model(left_min, left_max, ecrobot_get_light_sensor(NXT_PORT_S1)));
+		line_ctrl_I_Cd(raw_to_model(right_min, right_max, ecrobot_get_light_sensor(NXT_PORT_S2)));
+		line_ctrl_I_Jean_Michel(ecrobot_get_sonar_sensor(NXT_PORT_S3));
 
 		/* performs a Lustre step
 			output procs are called within the step
 		*/
-		controller_step();
+		line_ctrl_step();
 #ifdef DEBUG
 		display_goto_xy(0,0);
 		display_int(raw_to_model(MIN, MAX, ecrobot_get_light_sensor(NXT_PORT_S1)), 4);
