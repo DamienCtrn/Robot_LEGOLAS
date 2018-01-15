@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.324"
+    ComputedModelVersion    "1.326"
     NumModelReferences	    0
     NumTestPointedSignals   4
     TestPointedSignal {
@@ -94,10 +94,10 @@ Model {
 	$ClassName		"Simulink.EditorInfo"
 	IsActive		[1]
 	ViewObjType		"SimulinkSubsys"
-	LoadSaveID		"581"
+	LoadSaveID		"587"
 	Extents			[1882.0, 830.0]
-	ZoomFactor		[1.5]
-	Offset			[0.0, -99.333333333333286]
+	ZoomFactor		[1.25]
+	Offset			[-399.03927943750568, -13.439279437505721]
       }
       Object {
 	$PropName		"DockComponentsInfo"
@@ -129,11 +129,11 @@ Model {
   Creator		  "alex"
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
-  LastModifiedBy	  "moricevi"
+  LastModifiedBy	  "cathrind"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Mon Jan 15 13:53:08 2018"
-  RTWModifiedTimeStamp	  437925179
-  ModelVersionFormat	  "1.%<AutoIncrement:324>"
+  LastModifiedDate	  "Mon Jan 15 14:34:15 2018"
+  RTWModifiedTimeStamp	  437927652
+  ModelVersionFormat	  "1.%<AutoIncrement:326>"
   ConfigurationManager	  "none"
   SampleTimeColors	  on
   SampleTimeAnnotations	  off
@@ -1997,7 +1997,7 @@ Model {
 	}
 	Block {
 	  BlockType		  Inport
-	  Name			  "Jean René"
+	  Name			  "Jean Bono"
 	  SID			  "580"
 	  Position		  [-20, 338, 10, 352]
 	  ZOrder		  35
@@ -2016,7 +2016,7 @@ Model {
 	  System {
 	    Name		    "line_ctrl"
 	    Location		    [0, 28, 1920, 1046]
-	    Open		    on
+	    Open		    off
 	    PortBlocksUseCompactNotation off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -2788,7 +2788,7 @@ Model {
 	  System {
 	    Name		    "obst_ctrl"
 	    Location		    [0, 28, 1920, 1046]
-	    Open		    off
+	    Open		    on
 	    PortBlocksUseCompactNotation off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -2820,7 +2820,7 @@ Model {
 	    }
 	    Block {
 	      BlockType		      Inport
-	      Name		      "Jean René"
+	      Name		      "Jean Bono"
 	      SID		      "590"
 	      Position		      [280, 478, 310, 492]
 	      ZOrder		      37
@@ -3446,7 +3446,7 @@ Model {
 	    }
 	    Line {
 	      ZOrder		      227
-	      SrcBlock		      "Jean René"
+	      SrcBlock		      "Jean Bono"
 	      SrcPort		      1
 	      DstBlock		      "Logical\nOperator1"
 	      DstPort		      2
@@ -3654,7 +3654,7 @@ Model {
 	}
 	Line {
 	  ZOrder		  227
-	  SrcBlock		  "Jean René"
+	  SrcBlock		  "Jean Bono"
 	  SrcPort		  1
 	  DstBlock		  "obst_ctrl"
 	  DstPort		  3

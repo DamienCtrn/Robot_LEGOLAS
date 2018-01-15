@@ -1,6 +1,6 @@
 
 # Application name
-TARGET=multifruiti
+TARGET=multifruiti2
 
 # Where to find user C code
 USR_PATH=.
@@ -56,3 +56,5 @@ clear: clean
 
 flash:
 	t2n -put $(TARGET).rxe
+
+.PHONY:	flash clean

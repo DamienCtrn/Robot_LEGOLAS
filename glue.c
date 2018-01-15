@@ -6,6 +6,7 @@
 
 // GLUE CODE: include the Lustre generated header
 #include "line_ctrl.h"
+#include "obst_ctrl.h"
 
 // Calibration parameters
 #define MIN_LIGHT_SENSOR 0
@@ -15,16 +16,36 @@
 
 // #define DEBUG
 
-/* OSEK specific code, DO NOT CHANGE */
+_boolean obst = false;
+// DeclareResource(obst);
+
+/*-----------------------------
+   OSEK declarations
+-------------------------------
+DON'T MODIFY
+------------------------------*/
 DeclareCounter(SysTimerCnt);
-DeclareTask(Task1);
-void user_1ms_isr_type2(void) {
-  StatusType ercd;
-  ercd = SignalCounter(SysTimerCnt);
-  /* Increment OSEK Alarm Counter */
-  if(ercd != E_OK) { ShutdownOS(ercd); }
+DeclareResource(lcd);
+DeclareTask(LowTask);
+DeclareTask(HighTask);
+
+/*------------------------------
+ Function to be invoked from a category 2 interrupt
+--------------------------------
+DON'T MODIFY
+------------------------------*/
+void user_1ms_isr_type2(void)
+{
+	StatusType ercd;
+
+	/*
+	 *  Increment OSEK Alarm System Timer Count
+     */
+	ercd = SignalCounter( SysTimerCnt );
+	if( ercd != E_OK ){
+		ShutdownOS( ercd );
+	}
 }
-/* END OF OSEK specific code */
 
 /* Init and terminate OSEK */
 void ecrobot_device_initialize() {
@@ -47,7 +68,6 @@ void ecrobot_device_terminate() {
 }
 
 
-/* UsrTask */
 
 /* GLUE CODE
 	Since a SINGLE instance of teh Lustre gen. code is used,
@@ -57,6 +77,7 @@ void ecrobot_device_terminate() {
    	the global, unique instance is declared in the generated.
 		- all the "methods" (init, step input, output) have NO parameters
 */
+
 
 _boolean calibration_init = _true;
 int right_min = MAX_LIGHT_SENSOR,
@@ -81,6 +102,7 @@ void calibration_auto_step(void) {
 	if (right < right_min)
 		right_min = right;
 
+	GetResource(lcd);
 	display_goto_xy(0,0);
 	display_int(left_min, 4);
 	display_string(" left min");
@@ -102,6 +124,7 @@ void calibration_auto_step(void) {
 	display_string(" distance");
 
 	display_update();
+	ReleaseResource(lcd);
 }
 
 /* GLUE CODE
@@ -111,6 +134,13 @@ void calibration_auto_step(void) {
 */
 void usr_init(void) {
 	line_ctrl_init();
+	obst_ctrl_init();
+	while (calibration_init) {
+		calibration_auto_step();
+		if (ecrobot_is_ENTER_button_pressed()) {
+			calibration_init = _false;
+		}
+	}
 }
 
 /**
@@ -138,7 +168,7 @@ int speed_to_power(_real speed) {
 	Note: we directly use here the functions from
 	the "ecrobot" library (display_goto_xy, display_string etc)
 */
-void line_ctrl_O_v_d(_real V) {
+void line_ctrl_O_Vd(_real V) {
 	int v_power = speed_to_power(V);
 #ifdef DEBUG
 	display_goto_xy(0,3);
@@ -148,7 +178,7 @@ void line_ctrl_O_v_d(_real V) {
 	nxt_motor_set_speed(NXT_PORT_A, v_power, 1);
 }
 
-void line_ctrl_O_v_g(_real V) {
+void line_ctrl_O_Vg(_real V) {
 	int v_power = speed_to_power(V);
 #ifdef DEBUG
 	display_goto_xy(0,4);
@@ -158,6 +188,12 @@ void line_ctrl_O_v_g(_real V) {
 	nxt_motor_set_speed(NXT_PORT_B, v_power, 1);
 }
 
+void obst_ctrl_O_Obst(_boolean output) {
+	// GetResource(obst);
+	obst = output;
+	// ReleaseResource(obst);
+}
+
 /*
 	GLUE CODE
 	The "core" of a step:
@@ -165,42 +201,50 @@ void line_ctrl_O_v_g(_real V) {
      using the corresponding input procedures
 	- calls the step proc.
 */
-TASK(UsrTask)
-{
-	if (calibration_init) {
-		calibration_auto_step();
-		if (ecrobot_is_ENTER_button_pressed()) {
-			calibration_init = _false;
-		}
-	} else {
+TASK(LowTask) {
+	/* read and set inputs */
+	line_ctrl_I_Cg(raw_to_model(left_min, left_max, ecrobot_get_light_sensor(NXT_PORT_S1)));
+	line_ctrl_I_Cd(raw_to_model(right_min, right_max, ecrobot_get_light_sensor(NXT_PORT_S2)));
+	// GetResource(obst);
+	line_ctrl_I_Obst(obst);
+	// ReleaseResource(obst);
 
-		/* read and set inputs */
-		line_ctrl_I_Cg(raw_to_model(left_min, left_max, ecrobot_get_light_sensor(NXT_PORT_S1)));
-		line_ctrl_I_Cd(raw_to_model(right_min, right_max, ecrobot_get_light_sensor(NXT_PORT_S2)));
-		line_ctrl_I_Jean_Michel(ecrobot_get_sonar_sensor(NXT_PORT_S3));
+	line_ctrl_step();
 
-		/* performs a Lustre step
-			output procs are called within the step
-		*/
-		line_ctrl_step();
 #ifdef DEBUG
-		display_goto_xy(0,0);
-		display_int(raw_to_model(MIN, MAX, ecrobot_get_light_sensor(NXT_PORT_S1)), 4);
-		// display_int(ecrobot_get_light_sensor(NXT_PORT_S1), 4);	// Pour Calibration
-		display_string(" left ");
-		display_goto_xy(0,1);
-		display_int(raw_to_model(MIN, MAX, ecrobot_get_light_sensor(NXT_PORT_S2)), 4);
-		// display_int(ecrobot_get_light_sensor(NXT_PORT_S2), 4);	// Pour Calibration
-		display_string(" right");
-		display_goto_xy(0,2);
-		display_int(ecrobot_get_sonar_sensor(NXT_PORT_S3), 4);
-		display_string(" dist ");
-		/* refresh screen (ecrobot library)
-		 */
-		display_update();
+	GetResource(lcd);
+	display_goto_xy(0,0);
+	display_int(raw_to_model(MIN, MAX, ecrobot_get_light_sensor(NXT_PORT_S1)), 4);
+	// display_int(ecrobot_get_light_sensor(NXT_PORT_S1), 4);	// Pour Calibration
+	display_string(" left ");
+	display_goto_xy(0,1);
+	display_int(raw_to_model(MIN, MAX, ecrobot_get_light_sensor(NXT_PORT_S2)), 4);
+	// display_int(ecrobot_get_light_sensor(NXT_PORT_S2), 4);	// Pour Calibration
+	display_string(" right");
+	/* refresh screen (ecrobot library)
+	 */
+	display_update();
+	ReleaseResource(lcd);
 #endif
 
-	}
+	TerminateTask();
+}
+
+TASK(HighTask) {
+
+	/* read and set inputs */
+	obst_ctrl_I_Jean_Michel(ecrobot_get_sonar_sensor(NXT_PORT_S3));
+	obst_ctrl_I_Cd(raw_to_model(right_min, right_max, ecrobot_get_light_sensor(NXT_PORT_S2)));
+
+#ifdef DEBUG
+	GetResource(lcd);
+	display_goto_xy(0,2);
+	display_int(ecrobot_get_sonar_sensor(NXT_PORT_S3), 4);
+	display_string(" dist ");
+	ReleaseResource(lcd);
+#endif
+
+	obst_ctrl_step();
 
 	TerminateTask();
 }
